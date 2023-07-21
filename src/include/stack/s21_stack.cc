@@ -1,46 +1,48 @@
 #include "s21_stack.h"
 
 // Constructors
+namespace s21 {
 template <class T>
-s21::stack<T>::stack() : list<T>() {}
+stack<T>::stack() : list<T>() {}
 
 template <class T>
-s21::stack<T>::stack(size_type n) : list<T>(n) {}
+stack<T>::stack(size_type n) : list<T>(n) {}
 
 template <class T>
-s21::stack<T>::stack(std::initializer_list<value_type> const &items)
+stack<T>::stack(std::initializer_list<value_type> const &items)
     : list<T>(items) {}
 
 template <class T>
-s21::stack<T>::stack(const stack &s) : list<T>(s) {}
+stack<T>::stack(const stack &s) : list<T>(s) {}
 
 template <class T>
-s21::stack<T>::stack(stack &&s) : list<T>(std::move(s)) {}
+stack<T>::stack(stack &&s) : list<T>(std::move(s)) {}
 
 template <class T>
-s21::stack<T>::~stack() {}
+stack<T>::~stack() = default;
 
 // Overload operators
 template <class T>
-s21::stack<T> s21::stack<T>::operator=(stack &&s) {
-  s21::list<T>::clear();
-  s21::list<T>::MoveList(s);
+stack<T> stack<T>::operator=(stack &&s) {
+  list<T>::clear();
+  list<T>::MoveList(s);
   return *this;
 }
 
 // Element access
 template <class T>
-typename s21::stack<T>::const_reference s21::stack<T>::top() const {
-  return s21::list<T>::back();
+typename stack<T>::const_reference stack<T>::top() const {
+  return list<T>::back();
 }
 
 // Modifiers
 template <class T>
-void s21::stack<T>::push(const_reference value) {
-  s21::list<T>::push_back(value);
+void stack<T>::push(const_reference value) {
+  list<T>::push_back(value);
 }
 
 template <class T>
-void s21::stack<T>::pop() {
-  s21::list<T>::pop_back();
+void stack<T>::pop() {
+  list<T>::pop_back();
 }
+}  // namespace s21

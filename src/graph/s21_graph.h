@@ -6,7 +6,7 @@
 #include <sstream>
 
 
-#include "../matrix/s21_matrix_oop.h"
+#include "../include/matrix/s21_matrix_oop.h"
 
 namespace s21 {
 class Graph {
