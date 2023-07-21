@@ -4,39 +4,39 @@
 #include <cmath>
 #include <iostream>
 
-class S21Matrix {
+class Matrix {
  public:
-  S21Matrix();
-  explicit S21Matrix(int rows, int cols);
-  S21Matrix(const S21Matrix &other);
-  S21Matrix(S21Matrix &&other) noexcept;
-  ~S21Matrix();
+  Matrix();
+  explicit Matrix(unsigned int rows, unsigned int cols);
+  Matrix(const Matrix &other);
+  Matrix(Matrix &&other) noexcept;
+  ~Matrix();
 
-  int get_rows() const;
-  int get_cols() const;
-  void set_rows(int rows);
-  void set_cols(int cols);
+  int GetRows() const;
+  int GetCols() const;
+  void SetRows(int rows);
+  void SetCols(int cols);
 
-  bool EqMatrix(const S21Matrix &other);
-  void SumMatrix(const S21Matrix &other);
-  void SubMatrix(const S21Matrix &other);
+  bool EqMatrix(const Matrix &other);
+  void SumMatrix(const Matrix &other);
+  void SubMatrix(const Matrix &other);
   void MulNumber(double num);
-  void MulMatrix(const S21Matrix &other);
-  S21Matrix Transpose();
-  S21Matrix CalcComplements();
+  void MulMatrix(const Matrix &other);
+  Matrix Transpose();
+  Matrix CalcComplements();
   double Determinant();
-  S21Matrix InverseMatrix();
+  Matrix InverseMatrix();
 
-  S21Matrix operator+(const S21Matrix &other);
-  S21Matrix operator-(const S21Matrix &other);
-  S21Matrix operator*(double num);
-  S21Matrix operator*(const S21Matrix &other);
-  bool operator==(const S21Matrix &other);
-  S21Matrix &operator=(const S21Matrix &other);
-  S21Matrix operator+=(const S21Matrix &other);
-  S21Matrix operator-=(const S21Matrix &other);
-  S21Matrix operator*=(double num);
-  S21Matrix operator*=(const S21Matrix &other);
+  Matrix operator+(const Matrix &other);
+  Matrix operator-(const Matrix &other);
+  Matrix operator*(double num);
+  Matrix operator*(const Matrix &other);
+  bool operator==(const Matrix &other);
+  Matrix &operator=(const Matrix &other);
+  Matrix operator+=(const Matrix &other);
+  Matrix operator-=(const Matrix &other);
+  Matrix operator*=(double num);
+  Matrix operator*=(const Matrix &other);
   double &operator()(int i, int j);
 
   void FillingMatrix();
@@ -48,8 +48,8 @@ class S21Matrix {
 
   void InitMatrix();
   bool MatrixIsExtend() const;
-  bool SizeComparison(const S21Matrix &other) const;
-  void ShortenedCopy(const S21Matrix &other, int row, int column);
+  bool SizeComparison(const Matrix &other) const;
+  void ShortenedCopy(const Matrix &other, int row, int column);
   void DeleteMatrix();
 };
 
