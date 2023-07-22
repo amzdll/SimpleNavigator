@@ -3,6 +3,8 @@ set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.21)
 project(SimpleNavigator LANGUAGES CXX)
 
+find_package(Curses REQUIRED)
+
 include_directories(.)
 include_directories(src)
 include_directories(src/include)
@@ -30,6 +32,6 @@ add_executable(SimpleNavigator
         src/include/queue/s21_queue.cc
         src/include/queue/s21_queue.h
         src/include/stack/s21_stack.cc
-        src/include/stack/s21_stack.h)
+        src/include/stack/s21_stack.h src/console_interface/console_interface.h src/console_interface/console_interface.cc)
 
 target_link_libraries(SimpleNavigator pthread)

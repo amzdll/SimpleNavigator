@@ -6,8 +6,9 @@ std::vector<int> GraphAlgorithms::DepthFirstSearch(Graph& graph,
   Matrix adjacency_matrix = graph.GetGraph();
   s21::stack<int> adjacent_vertices;
   std::list<int> visited_vertices;
-  int vertex_row_index = 0;
 
+  int vertex_row_index = 0;
+  int vertex = start_vertex;
   bool is_founded = false;
   for (int row = 0, col = 0; row < adjacency_matrix.GetRows() && !is_founded;
        ++row) {
@@ -19,50 +20,35 @@ std::vector<int> GraphAlgorithms::DepthFirstSearch(Graph& graph,
   if (!is_founded) {
     return std::vector<int>{};
   }
-//  visited_vertices.push_front(start_vertex);
-  UpdateAdjacentVertices(1,adjacency_matrix, adjacent_vertices, visited_vertices);
-//  DeapthSearch(vertex_row_index, adjacency_matrix, adjacent_vertices,
-//               visited_vertices);
 
+  do {
+    visited_vertices.push_front(vertex);
+    UpdateAdjacentVertices(vertex, adjacency_matrix, adjacent_vertices,
+                           visited_vertices);
+    std::cout << adjacent_vertices.size() << std::endl;
+    vertex = adjacent_vertices.top();
+    adjacent_vertices.pop();
+  } while (!adjacent_vertices.empty());
 
-  while(!adjacent_vertices.empty()) {
-    std::cout << adjacent_vertices.top() << " ";
-    adjacent_vertices.pop();
-  }
-  UpdateAdjacentVertices(1,adjacency_matrix, adjacent_vertices, visited_vertices);
-  std::cout << std::endl;
-  while(!adjacent_vertices.empty()) {
-    std::cout << adjacent_vertices.top() << " ";
-    adjacent_vertices.pop();
-  }
+//  for (auto itr : visited_vertices) {
+//    std::cout << itr << " ";
+//  }
   return {};
 }
 
-//void GraphAlgorithms::DeapthSearch(int vertex_row_index,
-//                                   Matrix& adjacency_matrix,
-//                                   s21::stack<int>& adjacent_vertices,
-//                                   std::list<int>& visited_vertices) {
-//  bool is_visited = false;
-//  for (int col = 1; col < adjacency_matrix.GetCols(); ++col) {
-//    if (adjacency_matrix(vertex_row_index, col) != 0) {
-//      for (int& visited_vertex : visited_vertices) {
-//        if (adjacency_matrix(vertex_row_index, col) == visited_vertex) {
-//          is_visited = true;
-//        }
-//      }
-//      if (!is_visited) {
-//        visited_vertices.push_back(adjacency_matrix(vertex_row_index, 0));
-//        DeapthSearch();
-//      }
-//    }
-//  }
-//}
-
-void GraphAlgorithms::UpdateAdjacentVertices(int vertex_row_index,
+void GraphAlgorithms::UpdateAdjacentVertices(int vertex,
                                              Matrix& adjacency_matrix,
                                              s21::stack<int>& adjacent_vertices,
                                              std::list<int>& visited_vertices) {
-  for (int row = 0,  col = 1; col < adjacency_matrix.GetCols(); ++col) {
+  int vertex_row_index = 0;
+  for (int row = 0, col = 0;
+       row < adjacency_matrix.GetRows() && vertex_row_index == 0; ++row) {
+    if (vertex == adjacency_matrix(row, col)) {
+      vertex_row_index = row;
+    }
+  }
+
+  for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
     if (adjacency_matrix(vertex_row_index, col) != 0 &&
         std::find(visited_vertices.begin(), visited_vertices.end(),
                   adjacency_matrix(row, col)) == visited_vertices.end()) {
@@ -75,8 +61,9 @@ void GraphAlgorithms::UpdateAdjacentVertices(int vertex_row_index,
 
 int main() {
   s21::Graph graph;
-  graph.LoadGraphFromFile("/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graph/graph");
+  graph.LoadGraphFromFile(
+      "/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graph/graph");
   s21::GraphAlgorithms graph_a;
-  graph_a.DepthFirstSearch(graph, 29);
+  graph_a.DepthFirstSearch(graph, 100);
   return 0;
 }
