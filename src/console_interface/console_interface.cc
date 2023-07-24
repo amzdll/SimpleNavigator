@@ -95,7 +95,7 @@ void ConsoleInterface::RunMainLogic(std::string& choice) {
       is_open = false;
     }
   } else if (choice == "2") {
-    ;
+    DepthFirstSearchOption();
   } else if (choice == "3") {
     ;
   } else if (choice == "4") {
@@ -108,11 +108,26 @@ void ConsoleInterface::RunMainLogic(std::string& choice) {
     ;
   }
 }
+void ConsoleInterface::DepthFirstSearchOption() {
+  int start_vertex = 0;
+  std::cout << "Start vertex: ";
+  std::cin >> start_vertex;
+  std::list<int> path{};
+  path = graph_algorithms_.DepthFirstSearch(graph_, start_vertex);
+  if (path.empty()) {
+    std::cout << "Start vertex is not found\n";
+    return;
+  }
+  for (auto itr : path) {
+    std::cout << itr << " ";
+  }
+  std::cout << std::endl;
+}
 
 }  // namespace s21
-
-int main() {
-  s21::ConsoleInterface ci;
-  ci.Run();
-  return 0;
-}
+// /home/freiqq/Projects/Algorithms/SimpleNavigator/src/graph/graph
+//int main() {
+//  s21::ConsoleInterface ci;
+//  ci.Run();
+//  return 0;
+//}

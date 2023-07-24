@@ -32,6 +32,6 @@ add_executable(SimpleNavigator
         src/include/queue/s21_queue.cc
         src/include/queue/s21_queue.h
         src/include/stack/s21_stack.cc
-        src/include/stack/s21_stack.h src/console_interface/console_interface.h src/console_interface/console_interface.cc)
+        src/include/stack/s21_stack.h src/console_interface/console_interface.h src/console_interface/console_interface.cc src/graph_algorithms/s21_graph_algorithms_utils.cc src/graph_algorithms/s21_graph_algorithms_utils.h)
 
 target_link_libraries(SimpleNavigator pthread)

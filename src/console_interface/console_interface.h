@@ -25,7 +25,9 @@ class ConsoleInterface {
   static void PrintStartMenu();
   static void PrintMainMenu();
   static bool LoadData(Graph &graph);
+
   void RunMainLogic(std::string &choice);
+  void DepthFirstSearchOption();
 
   static void ClearConsole();
   void RunInitLogic();

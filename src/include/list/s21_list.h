@@ -1,5 +1,5 @@
-#ifndef CPP2_CONTAINERS_LIST_S21_LIST_H_
-#define CPP2_CONTAINERS_LIST_S21_LIST_H_
+#ifndef SIMPLENAVIGATOR_S21_LIST_H
+#define SIMPLENAVIGATOR_S21_LIST_H
 
 #include <iostream>
 #include <limits>
@@ -93,4 +93,4 @@ class list<T>::ListIterator {
 };
 }  // namespace s21
 
-#endif  // CPP2_CONTAINERS_LIST_S21_LIST_H_
+#endif  // SIMPLENAVIGATOR_S21_LIST_H
