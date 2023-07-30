@@ -6,13 +6,12 @@ bool Graph::LoadGraphFromFile(const std::string& filename) {
   if (!file_data.is_open()) {
     return false;
   }
-
   unsigned int dimension;
   file_data >> dimension;
-  Matrix adjacency_matrix(dimension, dimension);
+  matrix<int> adjacency_matrix(dimension, dimension);
   for (int row = 0; row < adjacency_matrix.GetRows(); ++row) {
     for (int col = 0; col < adjacency_matrix.GetCols(); ++col) {
-      file_data >> adjacency_matrix(row, col);
+      file_data >> adjacency_matrix[row][col];
     }
   }
   adjacency_matrix_ = adjacency_matrix;
@@ -20,7 +19,7 @@ bool Graph::LoadGraphFromFile(const std::string& filename) {
   return true;
 }
 
-bool Graph::ExportGraphToDot(std::string filename) {
+bool Graph::ExportGraphToDot(const std::string& filename) {
   std::ofstream file(filename);
   if (!file.is_open()) {
     return false;
@@ -41,10 +40,3 @@ bool Graph::ExportGraphToDot(std::string filename) {
 }
 
 }  // namespace s21
-
-// int main() {
-//   s21::Graph a;
-//   a.LoadGraphFromFile("graph");
-//   a.ExportGraphToDot("graph.dot");
-//   return 0;
-// }

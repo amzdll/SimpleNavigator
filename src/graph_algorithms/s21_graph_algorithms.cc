@@ -3,12 +3,12 @@
 namespace s21 {
 std::list<int> GraphAlgorithms::DepthFirstSearch(Graph& graph,
                                                  int start_vertex) {
-  Matrix adjacency_matrix = graph.GetGraph();
-  s21::stack<int> adjacent_vertices;
+  int vertex = start_vertex;
+  matrix<int> adjacency_matrix = graph.GetGraph();
+  stack<int> adjacent_vertices;
   std::list<int> visited_vertices{start_vertex};
 
-  int vertex = start_vertex;
-  if (!GetIndexOfVertex(vertex, adjacency_matrix)) {
+  if (!GetIndexOfVertex(start_vertex, adjacency_matrix)) {
     return {};
   }
 
@@ -26,8 +26,8 @@ std::list<int> GraphAlgorithms::DepthFirstSearch(Graph& graph,
 
 std::list<int> GraphAlgorithms::BreadthFirstSearch(Graph& graph,
                                                    int start_vertex) {
-  Matrix adjacency_matrix = graph.GetGraph();
-  std::queue<int> adjacent_vertices;
+  matrix<int> adjacency_matrix = graph.GetGraph();
+  s21::queue<int> adjacent_vertices;
   std::list<int> visited_vertices{start_vertex};
 
   int vertex = start_vertex;
@@ -48,10 +48,15 @@ std::list<int> GraphAlgorithms::BreadthFirstSearch(Graph& graph,
 
 int GraphAlgorithms::GetShortestPathBetweenVertices(Graph& graph, int vertex1,
                                                     int vertex2) {
-  Matrix adjacency_matrix = graph.GetGraph();
+  matrix adjacency_matrix = graph.GetGraph();
+  queue<int> adjacent_vertices;
   std::map<int, int> path_cost;
-  std::queue<int> adjacent_vertices;
   std::list<int> visited_vertices{vertex1};
+
+  if (!GetIndexOfVertex(vertex1, adjacency_matrix) ||
+      !GetIndexOfVertex(vertex2, adjacency_matrix)) {
+    return {};
+  }
 
   int vertex = vertex1;
   for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
@@ -70,16 +75,15 @@ int GraphAlgorithms::GetShortestPathBetweenVertices(Graph& graph, int vertex1,
   return path_cost[vertex2];
 }
 
-Matrix GraphAlgorithms::GetShortestPathsBetweenAllVertices(Graph& graph) {
-  Matrix adjacency_matrix = graph.GetGraph();
-  //  Matrix adjacency_matrix(adjacency_matrix.GetRows(),
-  //  adjacency_matrix.GetCols());
+matrix<int> GraphAlgorithms::GetShortestPathsBetweenAllVertices(Graph& graph) {
+  matrix<int> adjacency_matrix = graph.GetGraph();
   for (int k = 0; k < adjacency_matrix.GetCols(); ++k) {
     for (int i = 0; i < adjacency_matrix.GetRows(); ++i) {
       for (int j = 0; j < adjacency_matrix.GetCols(); ++j) {
         if (adjacency_matrix(i, k) != 0 && adjacency_matrix(k, j) != 0) {
           int new_distance = adjacency_matrix(i, k) + adjacency_matrix(k, j);
-          if (adjacency_matrix(i, j) == 0 || new_distance < adjacency_matrix(i, j)) {
+          if (adjacency_matrix(i, j) == 0 ||
+              new_distance < adjacency_matrix(i, j)) {
             adjacency_matrix(i, j) = new_distance;
           }
         }
@@ -92,23 +96,25 @@ Matrix GraphAlgorithms::GetShortestPathsBetweenAllVertices(Graph& graph) {
 
 }  // namespace s21
 
-int main() {
-  s21::Graph graph;
-  graph.LoadGraphFromFile(
-      "/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graph/graph.txt");
-  s21::GraphAlgorithms graph_a;
-  std::list<int> a;
-  std::list<int> b;
-
-  //  int c = graph_a.GetShortestPathBetweenVertices(graph, 1, 4);
-  //  std::cout << c;
-  Matrix d = graph_a.GetShortestPathsBetweenAllVertices(graph);
-
-  for (int i = 0; i < d.GetRows(); ++i) {
-    for (int j = 0; j < d.GetCols(); ++j) {
-      std::cout << d(i, j) << " ";
-    }
-    std::cout << std::endl;
-  }
-  return 0;
-}
+// int main() {
+//   s21::Graph graph;
+//   graph.LoadGraphFromFile(
+//       "/home/freiqq/Projects/Algorithms/SimpleNavigator/materials/examples/graph_1.txt");
+//   s21::GraphAlgorithms graph_a;
+//   std::list<int> a;
+//   std::list<int> b;
+//   a = graph_a.DepthFirstSearch(graph, 1);
+//   for (auto i : a) {
+//     std::cout << i << " ";
+//   }
+////    int c = graph_a.GetShortestPathBetweenVertices(graph, 1, 4);
+////    std::cout << c << std::endl;
+////  Matrix d = graph.GetGraph();
+////  for (int i = 0; i < d.GetRows(); ++i) {
+////    for (int j = 0; j < d.GetCols(); ++j) {
+////      std::cout << d[i][j] << " ";
+////    }
+////    std::cout << std::endl;
+////  }
+//  return 0;
+//}
