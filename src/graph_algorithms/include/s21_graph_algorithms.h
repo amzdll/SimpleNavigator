@@ -9,7 +9,6 @@
 
 #include "s21_graph.h"
 #include "queue.h"
-//#include "stack.h"
 #include "stack.h"
 
 namespace s21 {
@@ -29,7 +28,10 @@ class GraphAlgorithms {
   static matrix<int> GetShortestPathsBetweenAllVertices(Graph &graph);
 
   // Part 3
-  //  GetLeastSpanningTree(Graph &graph);
+  static matrix<int> GetLeastSpanningTree(Graph &graph);
+
+  // Part 4
+  static TsmResult SolveTravelingSalesmanProblem(Graph &graph_test_);
 
  private:
   static void UpdateAdjacentVertices(int vertex, matrix<int> &adjacency_matrix,
