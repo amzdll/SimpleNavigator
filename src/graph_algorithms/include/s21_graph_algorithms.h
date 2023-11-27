@@ -7,9 +7,10 @@
 #include <map>
 #include <vector>
 
-#include "../../graph/s21_graph.h"
-#include "../../libs/queue.h"
-#include "../../libs/stack.h"
+#include "s21_graph.h"
+#include "queue.h"
+//#include "stack.h"
+#include "stack.h"
 
 namespace s21 {
 class GraphAlgorithms {

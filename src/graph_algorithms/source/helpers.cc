@@ -1,7 +1,6 @@
 #include "s21_graph_algorithms.h"
 
 namespace s21 {
-
 void GraphAlgorithms::UpdateCost(int vertex, matrix<int>& adjacency_matrix,
                                  s21::queue<int>& adjacent_vertices,
                                  std::list<int>& visited_vertices,
@@ -85,5 +84,4 @@ bool GraphAlgorithms::Contains(const s21::queue<int>& queue, int elem) {
   }
   return false;
 }
-
 }  // namespace s21

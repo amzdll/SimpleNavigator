@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../graph_algorithms/include/s21_graph_algorithms.h"
+#include "s21_graph_algorithms.h"
 
 class GraphAlgorithmsTest : public ::testing::Test {
  protected:

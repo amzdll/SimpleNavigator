@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "../graph/s21_graph.h"
+#include "s21_graph.h"
 
 class GraphTest : public ::testing::Test {
  protected:
