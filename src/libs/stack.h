@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "./s21_list.hpp"
+#include "./list.h"
 
 namespace s21 {
 template <class T>

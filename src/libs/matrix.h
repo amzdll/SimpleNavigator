@@ -1,8 +1,10 @@
 #ifndef SIMPLENAVIGATOR_SRC_INCLUDE_S21_MATRIX_H_
 #define SIMPLENAVIGATOR_SRC_INCLUDE_S21_MATRIX_H_
+
 #include <cmath>
 #include <iostream>
 #include <type_traits>
+
 namespace s21 {
 template <class T>
 class matrix {

@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 
-#include "../utils/s21_matrix.hpp"
+#include "../libs/matrix.h"
 
 namespace s21 {
 class Graph {

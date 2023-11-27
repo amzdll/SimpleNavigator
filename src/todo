@@ -1,0 +1,2 @@
+fix cmake and relative path
+transfer methods from super cc file to subfiles. remove main cc file

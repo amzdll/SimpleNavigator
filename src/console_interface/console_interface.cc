@@ -113,7 +113,7 @@ void ConsoleInterface::DepthFirstSearchOption() {
   std::cout << "Start vertex: ";
   std::cin >> start_vertex;
   std::list<int> path{};
-  path = graph_algorithms_.DepthFirstSearch(graph_, start_vertex);
+  path = s21::GraphAlgorithms::DepthFirstSearch(graph_, start_vertex);
   if (path.empty()) {
     std::cout << "Start vertex is not found\n";
     return;
@@ -125,9 +125,4 @@ void ConsoleInterface::DepthFirstSearchOption() {
 }
 
 }  // namespace s21
-// /home/freiqq/Projects/Algorithms/SimpleNavigator/src/graph/graph
-//int main() {
-//  s21::ConsoleInterface ci;
-//  ci.Run();
-//  return 0;
-//}
+

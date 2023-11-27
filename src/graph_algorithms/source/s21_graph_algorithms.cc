@@ -93,28 +93,4 @@ matrix<int> GraphAlgorithms::GetShortestPathsBetweenAllVertices(Graph& graph) {
 
   return adjacency_matrix;
 }
-
 }  // namespace s21
-
-// int main() {
-//   s21::Graph graph;
-//   graph.LoadGraphFromFile(
-//       "/home/freiqq/Projects/Algorithms/SimpleNavigator/materials/examples/graph_1.txt");
-//   s21::GraphAlgorithms graph_a;
-//   std::list<int> a;
-//   std::list<int> b;
-//   a = graph_a.DepthFirstSearch(graph, 1);
-//   for (auto i : a) {
-//     std::cout << i << " ";
-//   }
-////    int c = graph_a.GetShortestPathBetweenVertices(graph, 1, 4);
-////    std::cout << c << std::endl;
-////  Matrix d = graph.GetGraph();
-////  for (int i = 0; i < d.GetRows(); ++i) {
-////    for (int j = 0; j < d.GetCols(); ++j) {
-////      std::cout << d[i][j] << " ";
-////    }
-////    std::cout << std::endl;
-////  }
-//  return 0;
-//}
