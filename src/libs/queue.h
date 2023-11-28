@@ -24,7 +24,7 @@ class queue {
   ~queue();
 
   // Overload operators
-  queue operator=(queue &&q);
+  queue &operator=(queue &&q) noexcept ;
 
   // Element access
   const_reference front() const;
@@ -66,7 +66,7 @@ s21::queue<T>::~queue() {}
 
 // Overload operators
 template <class T>
-s21::queue<T> s21::queue<T>::operator=(queue &&q) {
+s21::queue<T> &s21::queue<T>::operator=(queue &&q)  noexcept {
   list.clear();
   list.MoveList(q.list);
   return *this;

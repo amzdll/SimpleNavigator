@@ -2,6 +2,6 @@
 
 namespace s21 {
 matrix<int> GraphAlgorithms::GetLeastSpanningTree(Graph& graph) {
-  return matrix<int>();
+  return {};
 }
 }  // namespace s21
