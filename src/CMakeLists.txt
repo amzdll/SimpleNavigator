@@ -23,7 +23,7 @@ add_library(graph_algorithms_lib
         source/graph_algorithms/bfs_dfc.cc
         source/graph_algorithms/shortest_paths.cc
         source/graph_algorithms/minimum_spanning_tree.cc
-        source/graph_algorithms/ant_algorithm.cc
+        source/graph_algorithms/traveling_salesman_problem.cc
         source/graph_algorithms/helpers.cc)
 
 add_executable(tests
@@ -31,8 +31,8 @@ add_executable(tests
         tests/graph_test.cc)
 
 add_executable(ant
-        utils/ant_colony.cc
-        utils/ant_colony.h)
+        utils/ant_colony_optimization.cc
+        utils/ant_colony_optimization.h)
 
 target_link_libraries(ant PRIVATE
         pthread

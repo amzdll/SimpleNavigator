@@ -46,7 +46,7 @@ class matrix {
   matrix operator*=(double num);
   matrix operator*=(const matrix &other);
   T &operator()(int i, int j);
-  T *operator[](size_t row);
+  T *operator[](size_t row) const;
 
   void FillingMatrix();
   void ZeroingMatrix();
@@ -402,7 +402,7 @@ T &matrix<T>::operator()(int i, int j) {
 }
 
 template <class T>
-T *matrix<T>::operator[](size_t row) {
+T *matrix<T>::operator[](size_t row) const {
   if (row >= rows_) {
     throw std::out_of_range("Row index out of range");
   }
