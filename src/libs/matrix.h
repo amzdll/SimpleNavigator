@@ -16,6 +16,7 @@ class matrix {
  public:
   matrix();
   explicit matrix(unsigned int rows, unsigned int cols);
+  explicit matrix(unsigned int rows, unsigned int cols, T value);
   matrix(const matrix &other);
   matrix(matrix &&other) noexcept;
   ~matrix();
@@ -63,9 +64,20 @@ class matrix {
 };
 
 template <class T>
-matrix<T>::matrix() : rows_(0), cols_(0), matrix_(nullptr) {
-  InitMatrix();
+matrix<T>::matrix(unsigned int rows, unsigned int cols, T value)
+    : rows_(rows), cols_(cols), matrix_(new T *[rows_]) {
+  for (size_t i = 0; i < rows_; ++i) {
+    matrix_[i] = new T[cols_];
+  }
+  for (int row = 0; row < rows_; ++row) {
+    for (int col = 0; col < cols_; ++col) {
+      matrix_[row][col] = value;
+    }
+  }
 }
+
+template <class T>
+matrix<T>::matrix() : rows_(0), cols_(0), matrix_(nullptr) {}
 
 template <class T>
 matrix<T>::matrix(unsigned int rows, unsigned int cols) {

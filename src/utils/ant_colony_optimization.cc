@@ -1,55 +1,86 @@
 
 #include "ant_colony_optimization.h"
 
+#include <random>
 #include <utility>
 
 #include "iostream"
+#include "unordered_map"
 
-namespace s21 {
-Colony::Colony(matrix<int> adjacency_matrix)
-    : adjacency_matrix_(std::move(adjacency_matrix)) {}
-
-void Colony::InitializeColony() {
-  for (int row = 0, col = 1; col < adjacency_matrix_.GetRows(); ++col) {
-    colony_.emplace_back(adjacency_matrix_, adjacency_matrix_[row][col]);
-  }
+namespace s21  {
+Colony::Colony(matrix<float> adjacency_matrix)
+    : adjacency_matrix_(std::move(adjacency_matrix)) {
+  global_pheromones_matrix_ =
+      matrix(adjacency_matrix_.GetRows(), adjacency_matrix_.GetCols(), 1.f);
+  colony_configuration_.pheromon =
+      float(local_pheromones_matrix_.GetRows() - 1);
+  colony_configuration_.evaporation_rate = 0.5;
 }
 
 void Colony::BypassColony() {
-  for (auto ant : colony_) {
-    ant.Bypass(adjacency_matrix_);
+  EvaporatePheromones();
+  local_pheromones_matrix_ = global_pheromones_matrix_;
+  matrix<float> temp_graph = global_pheromones_matrix_;
+  for (int row = 1; row < global_pheromones_matrix_.GetRows(); ++row) {
+    AntBypass(row);
+
+    for (int i = 1; i < temp_graph.GetRows(); ++i) {
+      for (int j = 1; j < temp_graph.GetCols(); ++j) {
+        temp_graph[i][j] += local_pheromones_matrix_[i][j];
+      }
+    }
+    break;
   }
 }
 
-void Ant::Bypass(const matrix<int>& adjacency_matrix) {
-  int position = start_position_;
-  int number_of_vertices = adjacency_matrix.GetRows() - 1;
-
-  visited_vertices_.insert(start_position_);
-  while (visited_vertices_.size() < number_of_vertices) {
-    for (int col = 1; col < adjacency_matrix.GetCols(); ++col) {
-      if (adjacency_matrix[position][col] &&
-          visited_vertices_.find(col) == visited_vertices_.end()) {
-        visited_vertices_.insert(col);
-        position = col;
-        break;
-      }
+void Colony::EvaporatePheromones() const {
+  for (int i = 1; i < global_pheromones_matrix_.GetRows(); ++i) {
+    for (int j = 1; j < global_pheromones_matrix_.GetCols(); ++j) {
+      global_pheromones_matrix_[i][j] *= colony_configuration_.evaporation_rate;
     }
   }
-  for (auto visit : visited_vertices_) {
-    std::cout << visit << " ";
+}
+
+
+void Colony::AntBypass(int start_position) {
+  std::map<float, float> visited_vertices;
+  std::vector<float> cost_vertices;
+  float path_cost = 0;
+  float partial_sum = 0;
+
+  for (int row = start_position, col = 1;
+       col < local_pheromones_matrix_.GetCols(); ++col) {
+    if (adjacency_matrix_[row][col] != 0 &&
+        !visited_vertices.count(adjacency_matrix_[row][col])) {
+      visited_vertices.insert({col, adjacency_matrix_[row][col]});
+      path_cost += adjacency_matrix_[row][col];
+    }
   }
-  std::cout << std::endl;
+
+  for (const auto vertex : visited_vertices) {
+    cost_vertices.emplace_back(vertex.second / path_cost + partial_sum);
+    partial_sum += vertex.second / path_cost;
+  }
+
+  for (const auto vertex : cost_vertices) {
+    std::cout << vertex << " ";
+  }
 }
 
 }  // namespace s21
+// namespace s21
 
 int main() {
   s21::Graph graph;
+  //  graph.LoadGraphFromFile(
+  //      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/materials/"
+  //      "examples/graph_1.txt");
   graph.LoadGraphFromFile(
-      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/materials/"
-      "examples/graph_1.txt");
+      "/home/freiqq/Projects/Algorithms/SimpleNavigator/materials/examples/"
+      "graph_1.txt");
+
   s21::Colony ac(graph.GetGraph());
-  ac.InitializeColony();
-  ac.BypassColony();
+  //  ac.InitializeColony();
+    ac.BypassColony();
+//  ac.EvaporatePheromones();
 }

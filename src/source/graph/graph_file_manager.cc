@@ -8,7 +8,7 @@ bool Graph::LoadGraphFromFile(const std::string& filename) {
   }
   unsigned int dimension;
   file_data >> dimension;
-  matrix<int> adjacency_matrix(dimension, dimension);
+  matrix<float> adjacency_matrix(dimension, dimension);
   for (int row = 0; row < adjacency_matrix.GetRows(); ++row) {
     for (int col = 0; col < adjacency_matrix.GetCols(); ++col) {
       file_data >> adjacency_matrix[row][col];

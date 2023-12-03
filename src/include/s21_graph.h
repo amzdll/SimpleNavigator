@@ -13,10 +13,10 @@ class Graph {
   bool LoadGraphFromFile(const std::string& filename);
   bool ExportGraphToDot(const std::string& filename);
 
-  matrix<int> GetGraph() { return adjacency_matrix_; };
+  matrix<float> GetGraph() { return adjacency_matrix_; };
 
  private:
-  matrix<int> adjacency_matrix_{};
+  matrix<float> adjacency_matrix_{};
 };
 }  // namespace s21
 
