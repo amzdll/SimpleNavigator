@@ -19,10 +19,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs
 )
 
 set(PROJECT_SOURCES
-        graph_interface/main.cpp
-        graph_interface/mainwindow.cpp
-        graph_interface/mainwindow.h
-        graph_interface/mainwindow.ui
+        temp/1.cpp
+        temp/2.cpp
+        temp/2.h
+        temp/2.ui
 )
 
 add_library(data_structures INTERFACE)

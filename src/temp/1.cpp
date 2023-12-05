@@ -49,7 +49,6 @@ FruchtermanReingold::FruchtermanReingold(s21::matrix<float> adjacencyMatrix,
 
 std::vector<Node> FruchtermanReingold::layout() {
   initializePositions();
-
   const int numIterations = 100;
   for (int iter = 0; iter < numIterations; ++iter) {
     calculateForces();
@@ -61,12 +60,10 @@ std::vector<Node> FruchtermanReingold::layout() {
 
 void FruchtermanReingold::initializePositions() {
   nodes_.clear();
-
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<double> distX(0.0, width_);
   std::uniform_real_distribution<double> distY(0.0, height_);
-
   for (size_t i = 0; i < adjacencyMatrix_.GetRows(); ++i) {
     nodes_.emplace_back(distX(gen), distY(gen));
   }
@@ -79,11 +76,9 @@ void FruchtermanReingold::calculateForces() {
         double dx = nodes_[j].x - nodes_[i].x;
         double dy = nodes_[j].y - nodes_[i].y;
         double distance = std::max(1.0, std::sqrt(dx * dx + dy * dy));
-
         double repulsionForce = kRepulsionFactor / distance;
         nodes_[i].x -= repulsionForce * dx / distance;
         nodes_[i].y -= repulsionForce * dy / distance;
-
         if (adjacencyMatrix_[i][j] > 0.0) {
           double springForce = kSpringFactor * (distance - adjacencyMatrix_[i][j]);
           nodes_[i].x += springForce * dx / distance;
