@@ -9,7 +9,6 @@
 #include <vector>
 
 #include "iostream"
-#include "s21_graph.h"
 
 const double kRepulsionFactor = 500.0;  // Фактор отталкивания
 const double kSpringFactor = 0.1;       // Фактор пружины

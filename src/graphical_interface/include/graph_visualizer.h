@@ -9,6 +9,7 @@
 #include <QPointF>
 #include <QTimer>
 #include <QVector>
+#include <QVBoxLayout>
 #include <QWidget>
 #include <cmath>
 
@@ -20,11 +21,14 @@ class GraphVisualizer : public QWidget {
   Q_OBJECT
 
  public:
-  explicit GraphVisualizer(QWidget *parent = nullptr);
+  explicit GraphVisualizer(QWidget* parent = nullptr);
   ~GraphVisualizer();
 
  private:
-  Ui::GraphVisualizer *ui;
+  QGraphicsScene* scene_;
+  QGraphicsView* view_;
+  QVBoxLayout* layout_;
+  Ui::GraphVisualizer* ui;
 };
 
 #endif  // GRAPH_VISUALIZER_H

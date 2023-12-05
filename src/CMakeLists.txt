@@ -39,7 +39,7 @@ add_library(graph_algorithms_lib
         source/graph_algorithms/traveling_salesman_problem.cc
         source/graph_algorithms/helpers.cc)
 
-qt_add_executable(ui_ex
+add_executable(ui_ex
         ${PROJECT_SOURCES}
         MANUAL_FINALIZATION
 )
