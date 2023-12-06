@@ -10,7 +10,7 @@ namespace s21 {
 //
 //  if (!GetIndexOfVertex(start_vertex, adjacency_matrix)) {
 //    return {};
-//  }
+// w }
 //
 //  do {
 //    UpdateAdjacentVertices(vertex, adjacency_matrix, adjacent_vertices,

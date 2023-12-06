@@ -8,10 +8,12 @@
 #include <QGraphicsView>
 #include <QPointF>
 #include <QTimer>
-#include <QVector>
 #include <QVBoxLayout>
+#include <QVector>
 #include <QWidget>
 #include <cmath>
+
+#include "s21_graph.h"
 
 namespace Ui {
 class GraphVisualizer;
@@ -24,11 +26,23 @@ class GraphVisualizer : public QWidget {
   explicit GraphVisualizer(QWidget* parent = nullptr);
   ~GraphVisualizer();
 
+ public slots:
+  void OpenGraph();
+
  private:
+  s21::Graph graph_;
+  s21::matrix<float> adjacency_matrix_{};
+
   QGraphicsScene* scene_;
   QGraphicsView* view_;
   QVBoxLayout* layout_;
+
+  QList<QGraphicsEllipseItem*> vertices_;
+  QList<QGraphicsLineItem*> edges_;
+
   Ui::GraphVisualizer* ui;
+
+  void DrawGraph();
 };
 
 #endif  // GRAPH_VISUALIZER_H

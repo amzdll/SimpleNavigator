@@ -1,0 +1,6 @@
+fix cmake and relative path
+fix cmake
+transfer methods from super cc file to subfiles. remove main cc file
+refactor include from stack.h and etc to libs/stack.h
+refactor include guards
+fix tests

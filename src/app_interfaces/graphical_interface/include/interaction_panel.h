@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "graph_visualizer.h"
+
 namespace Ui {
 class InteractionPanel;
 }
@@ -11,10 +13,12 @@ class InteractionPanel : public QWidget {
   Q_OBJECT
 
  public:
-  explicit InteractionPanel(QWidget *parent = nullptr);
+  explicit InteractionPanel(GraphVisualizer *graph_visualizer,
+                   QWidget *parent = nullptr);
   ~InteractionPanel();
 
  private:
+  GraphVisualizer *graph_visualizer_;
   Ui::InteractionPanel *ui;
 };
 

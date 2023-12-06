@@ -22,6 +22,7 @@ class GraphicalInterface : public QMainWindow {
  private:
   InteractionPanel *interaction_panel_;
   GraphVisualizer *graph_visualizer_;
+
   Ui::GraphicalInterface *ui;
 };
 #endif  // GRAPHICALINTERFACE_H
