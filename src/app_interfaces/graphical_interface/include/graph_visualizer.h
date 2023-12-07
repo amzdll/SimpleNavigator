@@ -9,10 +9,12 @@
 #include <QPointF>
 #include <QTimer>
 #include <QVBoxLayout>
+#include <QVector2D>
 #include <QVector>
 #include <QWidget>
 #include <cmath>
 
+#include "random"
 #include "s21_graph.h"
 
 namespace Ui {
@@ -29,20 +31,26 @@ class GraphVisualizer : public QWidget {
  public slots:
   void OpenGraph();
 
+ protected:
+  void paintEvent(QPaintEvent* event) override;
+
  private:
   s21::Graph graph_;
   s21::matrix<float> adjacency_matrix_{};
 
-  QGraphicsScene* scene_;
-  QGraphicsView* view_;
-  QVBoxLayout* layout_;
-
-  QList<QGraphicsEllipseItem*> vertices_;
-  QList<QGraphicsLineItem*> edges_;
+  QVector<QVector2D> positions_;
+  QMap<QPair<int, int>, double> edge_weights_;
 
   Ui::GraphVisualizer* ui;
 
-  void DrawGraph();
+  void InitGraph();
+
+  void DrawEdges();
+  void DrawVertices();
+
+  //  void CalculateSpringForces(QVector<QPointF>& spring_forces);
+  void applyForces();
+  void centerGraph();
 };
 
 #endif  // GRAPH_VISUALIZER_H
