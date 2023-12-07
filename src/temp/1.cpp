@@ -128,18 +128,3 @@ class GraphLayout : public QGraphicsScene {
   QVector<QGraphicsEllipseItem*> vertices_;
 };
 
-int main(int argc, char *argv[]) {
-  QApplication a(argc, argv);
-
-  s21::Graph graph;
-  graph.LoadGraphFromFile(
-      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/materials/"
-      "examples/graph_1.txt");
-
-  QGraphicsView view;
-  GraphLayout scene(graph.GetGraph());
-  view.setScene(&scene);
-  view.show();
-
-  return a.exec();
-}
