@@ -11,21 +11,22 @@
 #include <QVector>
 #include <QWidget>
 #include <algorithm>
-
+#include <QTimer>
 #include "list"
 #include "random"
 #include "s21_graph.h"
 #include "s21_graph_algorithms.h"
+
 
 namespace Ui {
 class GraphVisualizer;
 }
 
 class GraphVisualizer : public QWidget {
-  Q_OBJECT
+ Q_OBJECT
 
  public:
-  explicit GraphVisualizer(QWidget* parent = nullptr);
+  explicit GraphVisualizer(QWidget *parent = nullptr);
   ~GraphVisualizer();
 
  public slots:
@@ -33,21 +34,17 @@ class GraphVisualizer : public QWidget {
   void DFC();
 
  protected:
-  void paintEvent(QPaintEvent* event) override;
-  QTimer* colorAnimationTimer;
-  int currentStep;
-
+  void paintEvent(QPaintEvent *event) override;
 
  private:
-  QPixmap temporaryPixmap;  // Временное хранилище для рисунка
+  QPixmap temporaryPixmap{};  // Временное хранилище для рисунка
   s21::Graph graph_;
   s21::matrix<float> adjacency_matrix_{};
-  QVector<QVector2D> positions_;
+  QVector<QPair<float, QVector2D>> vertices_;
   QMap<QPair<int, int>, double> edge_weights_;
+  QTimer timer_;
 
-//  QPainter painter_;
-
-  Ui::GraphVisualizer* ui;
+  Ui::GraphVisualizer *ui;
 
   void InitGraph();
 
@@ -55,12 +52,15 @@ class GraphVisualizer : public QWidget {
   void DrawVertices();
   void DrawEdgesValue();
 
-  //  void CalculateSpringForces(QVector<QPointF>& spring_forces);
   void ApplyForces();
 
-  QVector<QVector2D> RepulsionForce();
-  QVector<QVector2D> SpringForce();
+  QVector<QPair<float, QVector2D>> RepulsionForce();
+  QVector<QPair<float, QVector2D>> SpringForce();
   void CenterGraph();
+  void DrawGraph();
+
+// private slots:
+  void DrawDFC(std::list<float>& vertices);
 };
 
 #endif  // GRAPH_VISUALIZER_H
