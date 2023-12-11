@@ -1,0 +1,5 @@
+/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface/cmake-build-debug/CMakeFiles/graphical_interface.dir
+/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface/cmake-build-debug/CMakeFiles/graphical_interface_autogen_timestamp_deps.dir
+/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface/cmake-build-debug/CMakeFiles/graphical_interface_autogen.dir

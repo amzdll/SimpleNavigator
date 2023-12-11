@@ -1,0 +1,71 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"app_interfaces/graphical_interface/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "graphical_interface_autogen_timestamp_deps::@3b3d313d3dc57663c097"
+		}
+	],
+	"id" : "graphical_interface_autogen::@3b3d313d3dc57663c097",
+	"isGeneratorProvided" : true,
+	"name" : "graphical_interface_autogen",
+	"paths" : 
+	{
+		"build" : "app_interfaces/graphical_interface",
+		"source" : "app_interfaces/graphical_interface"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/app_interfaces/graphical_interface/CMakeFiles/graphical_interface_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/app_interfaces/graphical_interface/CMakeFiles/graphical_interface_autogen.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/app_interfaces/graphical_interface/graphical_interface_autogen/timestamp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

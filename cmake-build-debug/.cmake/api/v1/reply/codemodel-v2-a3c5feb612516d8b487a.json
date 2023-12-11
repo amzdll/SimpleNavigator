@@ -1,0 +1,133 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "graph_lib",
+					"jsonFile" : "directory-graph_lib-Debug-614def73545b210e0fd6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "graph_lib",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "app_interfaces/graphical_interface",
+					"jsonFile" : "directory-app_interfaces.graphical_interface-Debug-79f8e857a88019fb2819.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "app_interfaces/graphical_interface",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "SimpleNavigator",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "graphical_interface",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "GraphLibrary::@d37739288e42a2be922f",
+					"jsonFile" : "target-GraphLibrary-Debug-13cc73ccb6944bfda0bc.json",
+					"name" : "GraphLibrary",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "graphical_interface::@3b3d313d3dc57663c097",
+					"jsonFile" : "target-graphical_interface-Debug-c9720fc4be176d98816b.json",
+					"name" : "graphical_interface",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "graphical_interface_autogen::@3b3d313d3dc57663c097",
+					"jsonFile" : "target-graphical_interface_autogen-Debug-1ff713ac99351b1e385f.json",
+					"name" : "graphical_interface_autogen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "graphical_interface_autogen_timestamp_deps::@3b3d313d3dc57663c097",
+					"jsonFile" : "target-graphical_interface_autogen_timestamp_deps-Debug-522503fba8bd0181e39c.json",
+					"name" : "graphical_interface_autogen_timestamp_deps",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/freiqq/Projects/Algorithms/SimpleNavigator/src/cmake-build-debug",
+		"source" : "/home/freiqq/Projects/Algorithms/SimpleNavigator/src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

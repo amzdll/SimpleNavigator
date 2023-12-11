@@ -1,0 +1,1 @@
+CMakeLists.txt not found in /home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface Select CMakeLists.txt

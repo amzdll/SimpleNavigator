@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "graphical_interface",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "graphical_interface::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-graphical_interface-Debug-f8beb20abcb87f5c9693.json",
+					"name" : "graphical_interface",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "graphical_interface_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-graphical_interface_autogen-Debug-8257cfb3809a4147c47c.json",
+					"name" : "graphical_interface_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "graphical_interface_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-graphical_interface_autogen_timestamp_deps-Debug-ccf0eda54df6e7b52e90.json",
+					"name" : "graphical_interface_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface/cmake-build-debug",
+		"source" : "/home/freiqq/Projects/Algorithms/SimpleNavigator/src/graphical_interface"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
