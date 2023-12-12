@@ -11,7 +11,7 @@
 #include <QWidget>
 #include <algorithm>
 
-#include "forces_helpers.h"
+#include "helpers.h"
 #include "list"
 #include "random"
 #include "s21_graph.h"

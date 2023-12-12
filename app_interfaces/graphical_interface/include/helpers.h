@@ -6,7 +6,7 @@
 
 #include "s21_graph.h"
 
-class ForcesHelpers {
+class Helpers {
  public:
   static QVector<QPair<float, QVector2D>> ApplyForces(
       QVector<QPair<float, QVector2D>> vertices,

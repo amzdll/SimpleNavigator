@@ -39,8 +39,8 @@ void GraphVisualizer::OpenGraph() {
       pixmap_ = {};
 
       InitGraph();
-      vertices_ = ForcesHelpers::ApplyForces(vertices_, adjacency_matrix_);
-      vertices_ = ForcesHelpers::CenterGraph(width(), height(), vertices_);
+      vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
+      vertices_ = Helpers::CenterGraph(width(), height(), vertices_);
       DrawGraph();
     }
   }
