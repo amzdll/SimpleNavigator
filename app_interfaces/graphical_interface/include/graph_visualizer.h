@@ -31,7 +31,8 @@ class GraphVisualizer : public QWidget {
 
  public slots:
   void OpenGraph();
-  void DFC();
+  void DFS();
+  void BFS();
 
  protected:
   void paintEvent(QPaintEvent *event) override;
@@ -52,6 +53,8 @@ class GraphVisualizer : public QWidget {
   void DrawVertices();
   void DrawEdgesValue();
 
+
+
   void ApplyForces();
 
   QVector<QPair<float, QVector2D>> RepulsionForce();
@@ -59,8 +62,11 @@ class GraphVisualizer : public QWidget {
   void CenterGraph();
   void DrawGraph();
 
-// private slots:
-  void DrawDFC(std::list<float>& vertices);
+ private slots:
+//  void DrawDFS(float vertex);
+//  void DrawBFS(std::list<float>& vertices);
+  void DrawVertex(float vertex, Qt::GlobalColor text_color,
+                  Qt::GlobalColor vertex_color);
 };
 
 #endif  // GRAPH_VISUALIZER_H

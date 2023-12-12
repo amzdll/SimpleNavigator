@@ -9,5 +9,4 @@ GraphAlgorithms::TsmResult GraphAlgorithms::SolveTravelingSalesmanProblem(
 }
 
 
-
 }  // namespace s21

@@ -8,7 +8,10 @@ InteractionPanel::InteractionPanel(GraphVisualizer *graph_visualizer, QWidget *p
 
 
   connect(ui->OpenGraph, &QPushButton::clicked, graph_visualizer_, &GraphVisualizer::OpenGraph);
-  connect(ui->DFS,  &QPushButton::clicked, graph_visualizer_, &GraphVisualizer::DFC);
+  connect(ui->DFS,  &QPushButton::clicked, graph_visualizer_,
+          &GraphVisualizer::DFS);
+  connect(ui->BFS,  &QPushButton::clicked, graph_visualizer_,
+          &GraphVisualizer::BFS);
 }
 
 InteractionPanel::~InteractionPanel() { delete ui; }

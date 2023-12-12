@@ -20,7 +20,7 @@ class GraphAlgorithms {
   };
   // Part 1
   static std::list<float> DepthFirstSearch(Graph &graph, int start_vertex);
-  static std::list<int> BreadthFirstSearch(Graph &graph, int start_vertex);
+  static std::list<float> BreadthFirstSearch(Graph &graph, int start_vertex);
 
   // Part 2
   static int GetShortestPathBetweenVertices(Graph &graph, int vertex1,
