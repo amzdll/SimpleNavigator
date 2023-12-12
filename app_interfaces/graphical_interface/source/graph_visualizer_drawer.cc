@@ -1,20 +1,19 @@
-#include "graph_visualizer.h"
-
 #include <QBrush>
 #include <QPainter>
 #include <QPen>
 
 #include "../ui/ui_graph_visualizer.h"
+#include "graph_visualizer.h"
 
 void GraphVisualizer::paintEvent(QPaintEvent *event) {
   Q_UNUSED(event)
   QPainter painter(this);
-  painter.drawPixmap(0, 0, temporaryPixmap);
+  painter.drawPixmap(0, 0, pixmap_);
 }
 
 void GraphVisualizer::DrawGraph() {
-  temporaryPixmap = QPixmap(size());
-  temporaryPixmap.fill(Qt::transparent);
+  pixmap_ = QPixmap(size());
+  pixmap_.fill(Qt::transparent);
 
   DrawEdges();
   DrawVertices();
@@ -28,7 +27,7 @@ void GraphVisualizer::DrawVertices() {
 }
 
 void GraphVisualizer::DrawEdgesValue() {
-  QPainter painter(&temporaryPixmap);
+  QPainter painter(&pixmap_);
   QFont font;
   font.setBold(true);
   font.setPointSize(14);
@@ -48,16 +47,16 @@ void GraphVisualizer::DrawEdgesValue() {
       QPointF textPosition =
           center -
           QPointF(
-              fontMetrics.boundingRect(QString::number(it.value())).width() /  2,
-              fontMetrics.boundingRect(QString::number(it.value())).height() / 2);
+              fontMetrics.boundingRect(QString::number(it.value())).width() / 2,
+              fontMetrics.boundingRect(QString::number(it.value())).height() /
+                  2);
       painter.drawText(textPosition, QString::number(it.value()));
     }
   }
 }
 
-
 void GraphVisualizer::DrawEdges() {
-  QPainter painter(&temporaryPixmap);
+  QPainter painter(&pixmap_);
   painter.setPen(QPen(Qt::white));
   for (int i = 1; i < adjacency_matrix_.GetRows(); ++i) {
     for (int j = i + 1; j < adjacency_matrix_.GetRows(); ++j) {
@@ -69,10 +68,9 @@ void GraphVisualizer::DrawEdges() {
   }
 }
 
-
 void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
                                  Qt::GlobalColor vertex_color) {
-  QPainter painter(&temporaryPixmap);
+  QPainter painter(&pixmap_);
   painter.setPen(QPen(text_color));
   painter.setBrush(QBrush(vertex_color));
   qDebug() << vertices_[vertex].second.toPointF();

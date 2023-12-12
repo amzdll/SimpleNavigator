@@ -1,29 +1,28 @@
 #ifndef GRAPH_VISUALIZER_H
 #define GRAPH_VISUALIZER_H
 
-#include <QtGui/qpainterpath.h>
-
 #include <QApplication>
 #include <QFileDialog>
 #include <QPainter>
 #include <QPointF>
+#include <QTimer>
 #include <QVector2D>
 #include <QVector>
 #include <QWidget>
 #include <algorithm>
-#include <QTimer>
+
+#include "forces_helpers.h"
 #include "list"
 #include "random"
 #include "s21_graph.h"
 #include "s21_graph_algorithms.h"
-
 
 namespace Ui {
 class GraphVisualizer;
 }
 
 class GraphVisualizer : public QWidget {
- Q_OBJECT
+  Q_OBJECT
 
  public:
   explicit GraphVisualizer(QWidget *parent = nullptr);
@@ -38,7 +37,7 @@ class GraphVisualizer : public QWidget {
   void paintEvent(QPaintEvent *event) override;
 
  private:
-  QPixmap temporaryPixmap{};  // Временное хранилище для рисунка
+  QPixmap pixmap_{};
   s21::Graph graph_;
   s21::matrix<float> adjacency_matrix_{};
   QVector<QPair<float, QVector2D>> vertices_;
@@ -49,22 +48,12 @@ class GraphVisualizer : public QWidget {
 
   void InitGraph();
 
+
+  // todo: void ChangeWeightsGraph();
+  void DrawGraph();
   void DrawEdges();
   void DrawVertices();
   void DrawEdgesValue();
-
-
-
-  void ApplyForces();
-
-  QVector<QPair<float, QVector2D>> RepulsionForce();
-  QVector<QPair<float, QVector2D>> SpringForce();
-  void CenterGraph();
-  void DrawGraph();
-
- private slots:
-//  void DrawDFS(float vertex);
-//  void DrawBFS(std::list<float>& vertices);
   void DrawVertex(float vertex, Qt::GlobalColor text_color,
                   Qt::GlobalColor vertex_color);
 };

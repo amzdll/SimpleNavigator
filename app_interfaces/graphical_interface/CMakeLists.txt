@@ -14,8 +14,8 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 
-file(GLOB_RECURSE SOURCES source/*.cc )
-file(GLOB_RECURSE HEADERS  include/*.h )
+file(GLOB_RECURSE SOURCES source/*.cc)
+file(GLOB_RECURSE HEADERS  include/*.h)
 file(GLOB_RECURSE FORMS  ui/*.ui)
 
 set(APPLICATION
