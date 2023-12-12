@@ -1,10 +1,9 @@
-#include "graph_visualizer.h"
-
 #include <QBrush>
 #include <QPainter>
 #include <QPen>
 
 #include "../ui/ui_graph_visualizer.h"
+#include "graph_visualizer.h"
 
 GraphVisualizer::GraphVisualizer(QWidget *parent)
     : QWidget(parent), ui(new Ui::GraphVisualizer) {
@@ -77,9 +76,8 @@ void GraphVisualizer::BFS() {
   });
 }
 
-
 void GraphVisualizer::ApplyForces() {
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 500; ++i) {
     auto spring_forces = SpringForce();
     auto repulsion_force = RepulsionForce();
     for (int index = 0; index < vertices_.size(); ++index) {
@@ -90,7 +88,7 @@ void GraphVisualizer::ApplyForces() {
 }
 
 QVector<QPair<float, QVector2D>> GraphVisualizer::RepulsionForce() {
-  const qreal k = -0.1;
+  const qreal k = -0.5;
   QVector<QPair<float, QVector2D>> forces(vertices_.size(), {});
   for (int i = 1; i < vertices_.size(); ++i) {
     QVector2D force(0, 0);
@@ -98,8 +96,7 @@ QVector<QPair<float, QVector2D>> GraphVisualizer::RepulsionForce() {
       if (i != j) {
         QVector2D delta = vertices_[j].second - vertices_[i].second;
         qreal distance = delta.length();
-        force += adjacency_matrix_[i][j] * 10 * delta.normalized() *
-                 (1.0 / distance) * k * distance;
+        force += delta.normalized() * (1.0 / distance) * k * distance;
       }
     }
     forces[i].second += force;
@@ -108,18 +105,21 @@ QVector<QPair<float, QVector2D>> GraphVisualizer::RepulsionForce() {
 }
 
 QVector<QPair<float, QVector2D>> GraphVisualizer::SpringForce() {
-  const qreal k = 0.1;
+  const qreal k = 0.3;
   QVector<QPair<float, QVector2D>> forces(vertices_.size(), {});
-  for (int i = 1; i < vertices_.size(); ++i) {
-    for (int j = i + 1; j < vertices_.size(); ++j) {
-      QVector2D delta = vertices_[j].second - vertices_[i].second;
-      qreal distance = delta.length();
-      QVector2D force =
-          delta.normalized() * (distance - adjacency_matrix_[i][j] * 10) * k;
-      forces[i].second += force;
-      forces[j].second -= force;
+    for (int i = 1; i < vertices_.size(); ++i) {
+      for (int j = i + 1; j < vertices_.size(); ++j) {
+        if (adjacency_matrix_[i][j] != 0) {
+          QVector2D delta = vertices_[j].second - vertices_[i].second;
+          qreal distance = delta.length();
+          QVector2D force =
+              delta.normalized() * (distance - adjacency_matrix_[i][j] * 10) *
+              k;
+          forces[i].second += force;
+          forces[j].second -= force;
+        }
+      }
     }
-  }
   return forces;
 }
 
@@ -161,4 +161,3 @@ void GraphVisualizer::CenterGraph() {
   // Обновление отображения
   update();
 }
-
