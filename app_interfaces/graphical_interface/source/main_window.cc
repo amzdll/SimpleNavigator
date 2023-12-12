@@ -1,4 +1,5 @@
-#include "interface.h"
+#include "main_window.h"
+
 #include "../ui/ui_main_window.h"
 
 GraphicalInterface::GraphicalInterface(QWidget* parent)
