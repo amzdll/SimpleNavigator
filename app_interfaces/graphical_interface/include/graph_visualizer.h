@@ -30,8 +30,11 @@ class GraphVisualizer : public QWidget {
 
  public slots:
   void OpenGraph();
-  void DFS();
-  void BFS();
+  void DFS(float start_vertex);
+  void BFS(float start_vertex);
+  void GetShortestPathBetweenVertices(float start_vertex, float end_vertex);
+
+  void Redraw();
 
  protected:
   void paintEvent(QPaintEvent *event) override;
@@ -41,13 +44,12 @@ class GraphVisualizer : public QWidget {
   s21::Graph graph_;
   s21::matrix<float> adjacency_matrix_{};
   QVector<QPair<float, QVector2D>> vertices_;
-  QMap<QPair<int, int>, double> edge_weights_;
+  QMap<QPair<int, int>, float> edge_weights_;
   QTimer timer_;
 
   Ui::GraphVisualizer *ui;
 
   void InitGraph();
-
 
   // todo: void ChangeWeightsGraph();
   void DrawGraph();

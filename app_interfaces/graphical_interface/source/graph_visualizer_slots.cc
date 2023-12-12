@@ -37,37 +37,61 @@ void GraphVisualizer::OpenGraph() {
     if (graph_.LoadGraphFromFile(file_name.toStdString())) {
       adjacency_matrix_ = graph_.GetGraph();
       pixmap_ = {};
-
       InitGraph();
       vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
-      vertices_ = Helpers::CenterGraph(width(), height(), vertices_);
+      vertices_ = Helpers::CenterGraph(vertices_, width(), height());
       DrawGraph();
     }
   }
 }
 
-void GraphVisualizer::DFS() {
-  auto dfc_vertices = s21::GraphAlgorithms::DepthFirstSearch(graph_, 3);
+void GraphVisualizer::DFS(float start_vertex) {
+  auto dfc_vertices =
+      s21::GraphAlgorithms::DepthFirstSearch(graph_, start_vertex);
   DrawVertices();
-  QTimer::singleShot(100, this, [=]() {
+  QTimer::singleShot(300, this, [=]() {
     for (auto vertex : dfc_vertices) {
       DrawVertex(vertex, Qt::white, Qt::red);
       QEventLoop loop;
-      QTimer::singleShot(500, &loop, &QEventLoop::quit);
+      QTimer::singleShot(300, &loop, &QEventLoop::quit);
       loop.exec();
     }
   });
 }
 
-void GraphVisualizer::BFS() {
-  auto bfs_vertices = s21::GraphAlgorithms::BreadthFirstSearch(graph_, 3);
+void GraphVisualizer::BFS(float start_vertex) {
+  auto bfs_vertices =
+      s21::GraphAlgorithms::BreadthFirstSearch(graph_, start_vertex);
   DrawVertices();
-  QTimer::singleShot(500, this, [=]() {
+  QTimer::singleShot(300, this, [=]() {
     for (auto vertex : bfs_vertices) {
       DrawVertex(vertex, Qt::white, Qt::red);
       QEventLoop loop;
-      QTimer::singleShot(500, &loop, &QEventLoop::quit);
+      QTimer::singleShot(300, &loop, &QEventLoop::quit);
       loop.exec();
     }
   });
+}
+
+void GraphVisualizer::GetShortestPathBetweenVertices(float start_vertex,
+                                                     float end_vertex) {
+  auto bfs_vertices =
+      s21::GraphAlgorithms::GetShortestPathBetweenVertices(graph_, start_vertex, end_vertex);
+  DrawVertices();
+  QTimer::singleShot(300, this, [=]() {
+    for (auto vertex : bfs_vertices) {
+      DrawVertex(vertex, Qt::white, Qt::red);
+      QEventLoop loop;
+      QTimer::singleShot(300, &loop, &QEventLoop::quit);
+      loop.exec();
+    }
+  })
+}
+
+void GraphVisualizer::Redraw() {
+  pixmap_ = {};
+  InitGraph();
+  vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
+  vertices_ = Helpers::CenterGraph(vertices_, height(), width());
+  DrawGraph();
 }

@@ -73,10 +73,10 @@ void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
   QPainter painter(&pixmap_);
   painter.setPen(QPen(text_color));
   painter.setBrush(QBrush(vertex_color));
-  qDebug() << vertices_[vertex].second.toPointF();
   painter.drawEllipse(vertices_[vertex].second.toPointF(), 20, 20);
   QRectF textRect = QRectF(vertices_[vertex].second.x() - 10,
                            vertices_[vertex].second.y() - 10, 20, 20);
   painter.drawText(textRect, Qt::AlignCenter, QString::number(vertex));
   update();
 }
+

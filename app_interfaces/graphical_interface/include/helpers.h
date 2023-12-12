@@ -62,8 +62,8 @@ class Helpers {
   }
 
   static QVector<QPair<float, QVector2D>> CenterGraph(
-      int window_width, int window_height,
-      QVector<QPair<float, QVector2D>> vertices) {
+      QVector<QPair<float, QVector2D>> vertices, int window_width,
+      int window_height) {
     qreal minX = std::numeric_limits<qreal>::max();
     qreal minY = std::numeric_limits<qreal>::max();
     qreal maxX = std::numeric_limits<qreal>::min();

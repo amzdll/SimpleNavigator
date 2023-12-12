@@ -1,7 +1,7 @@
 #include "s21_graph_algorithms.h"
 
 namespace s21 {
-void GraphAlgorithms::UpdateCost(int vertex, matrix<float>& adjacency_matrix,
+void GraphAlgorithms::UpdateCost(float vertex, matrix<float>& adjacency_matrix,
                                  s21::queue<float>& adjacent_vertices,
                                  std::list<float>& visited_vertices,
                                  std::map<float, float>& path_cost) {

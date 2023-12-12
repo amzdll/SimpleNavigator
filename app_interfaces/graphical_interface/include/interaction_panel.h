@@ -1,6 +1,7 @@
 #ifndef INTERACTION_PANEL_H
 #define INTERACTION_PANEL_H
 
+#include <QDoubleValidator>
 #include <QWidget>
 
 #include "graph_visualizer.h"
@@ -14,7 +15,7 @@ class InteractionPanel : public QWidget {
 
  public:
   explicit InteractionPanel(GraphVisualizer *graph_visualizer,
-                   QWidget *parent = nullptr);
+                            QWidget *parent = nullptr);
   ~InteractionPanel();
 
  private:
