@@ -57,7 +57,7 @@ void GraphVisualizer::DrawEdgesValue() {
 
 void GraphVisualizer::DrawEdges() {
   QPainter painter(&pixmap_);
-  painter.setPen(QPen(Qt::white));
+  painter.setPen(QPen(Qt::white, 2));
   for (int i = 1; i < adjacency_matrix_.GetRows(); ++i) {
     for (int j = i + 1; j < adjacency_matrix_.GetRows(); ++j) {
       if (adjacency_matrix_[i][j] != 0) {

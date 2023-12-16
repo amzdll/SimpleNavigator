@@ -52,58 +52,6 @@
     <string>DFS</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>458</y>
-     <width>100</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_6">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>562</y>
-     <width>100</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_7">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>666</y>
-     <width>100</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_8">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>770</y>
-     <width>100</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="BFS">
    <property name="geometry">
     <rect>
@@ -120,7 +68,7 @@
   <widget class="QLineEdit" name="DFS_Input">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>16</x>
      <y>83</y>
      <width>91</width>
      <height>41</height>
@@ -130,9 +78,101 @@
   <widget class="QLineEdit" name="BFS_Input">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>16</x>
      <y>154</y>
      <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GetShortestPathBetweenVertices">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>270</y>
+     <width>470</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Get Shortest Path Between Vertices</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GetShortestPathsBetweenAllVertices">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>400</y>
+     <width>470</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Get Shortest Paths Between All Vertices</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="TSM">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>780</y>
+     <width>470</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Traveling</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GetShortestPathsBetweenAllVertices_2">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>210</y>
+     <width>470</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Get Least Spanning Tree</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>470</y>
+     <width>470</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Vertex</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Path</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QLineEdit" name="BFS_Input_2">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>340</y>
+     <width>221</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="BFS_Input_3">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>340</y>
+     <width>221</width>
      <height>41</height>
     </rect>
    </property>

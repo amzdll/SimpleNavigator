@@ -33,6 +33,7 @@ class GraphVisualizer : public QWidget {
   void DFS(float start_vertex);
   void BFS(float start_vertex);
   void GetShortestPathBetweenVertices(float start_vertex, float end_vertex);
+  void TSM();
 
   void Redraw();
 

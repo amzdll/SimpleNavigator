@@ -16,6 +16,7 @@ class GraphAlgorithms {
  public:
   struct TsmResult {
     std::vector<float> vertices;
+    s21::matrix<float> pheromones;
     double distance;
   };
   // Part 1
@@ -31,7 +32,7 @@ class GraphAlgorithms {
   static matrix<float> GetLeastSpanningTree(Graph &graph);
 
   // Part 4
-  static TsmResult SolveTravelingSalesmanProblem(Graph &graph_test_);
+  static TsmResult SolveTravelingSalesmanProblem(Graph &graph);
 
  private:
   static void UpdateAdjacentVertices(float vertex,

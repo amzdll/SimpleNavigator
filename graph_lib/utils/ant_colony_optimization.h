@@ -7,6 +7,7 @@
 #include "map"
 #include "matrix.h"
 #include "s21_graph.h"
+#include "s21_graph_algorithms.h"
 
 namespace s21 {
 
@@ -36,15 +37,15 @@ class Colony {
   void InitializeColony();
   void BypassColony();
   void AntBypass(int start_position);
-
   void EvaporatePheromones() const;
 
+  GraphAlgorithms::TsmResult GetResult();
  private:
   struct ColonyConfiguration {
     float pheromon;
     float evaporation_rate;
   };
-
+  GraphAlgorithms::TsmResult tsm_result_;
   ColonyConfiguration colony_configuration_{};
   std::vector<Ant> colony_;
 
@@ -52,6 +53,7 @@ class Colony {
   matrix<float> global_pheromones_matrix_{};
   matrix<float> local_pheromones_matrix_{};
   //  ant ant_;
+
 };
 
 }  // namespace s21

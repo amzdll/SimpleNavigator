@@ -7,30 +7,31 @@
 #include "iostream"
 #include "unordered_map"
 
-namespace s21  {
+namespace s21 {
 Colony::Colony(matrix<float> adjacency_matrix)
     : adjacency_matrix_(std::move(adjacency_matrix)) {
   global_pheromones_matrix_ =
       matrix(adjacency_matrix_.GetRows(), adjacency_matrix_.GetCols(), 1.f);
   colony_configuration_.pheromon =
       float(local_pheromones_matrix_.GetRows() - 1);
-  colony_configuration_.evaporation_rate = 0.5;
+  colony_configuration_.evaporation_rate = 3.5;
 }
 
 void Colony::BypassColony() {
   EvaporatePheromones();
   local_pheromones_matrix_ = global_pheromones_matrix_;
-  matrix<float> temp_graph = global_pheromones_matrix_;
-  for (int row = 1; row < global_pheromones_matrix_.GetRows(); ++row) {
-    AntBypass(row);
-
-    for (int i = 1; i < temp_graph.GetRows(); ++i) {
-      for (int j = 1; j < temp_graph.GetCols(); ++j) {
-        temp_graph[i][j] += local_pheromones_matrix_[i][j];
-      }
-    }
-    break;
-  }
+  //  matrix<float> temp_graph = global_pheromones_matrix_;
+  //  for (int row = 1; row < global_pheromones_matrix_.GetRows(); ++row) {
+  //    AntBypass(row);
+  //
+  //    for (int i = 1; i < temp_graph.GetRows(); ++i) {
+  //      for (int j = 1; j < temp_graph.GetCols(); ++j) {
+  //        temp_graph[i][j] += local_pheromones_matrix_[i][j];
+  //      }
+  //    }
+  //    break;
+  //  }
+  tsm_result_.pheromones = global_pheromones_matrix_;
 }
 
 void Colony::EvaporatePheromones() const {
@@ -40,7 +41,6 @@ void Colony::EvaporatePheromones() const {
     }
   }
 }
-
 
 void Colony::AntBypass(int start_position) {
   std::map<float, float> visited_vertices;
@@ -67,20 +67,22 @@ void Colony::AntBypass(int start_position) {
   }
 }
 
+GraphAlgorithms::TsmResult Colony::GetResult() { return tsm_result_; }
+
 }  // namespace s21
 // namespace s21
 
-int main() {
-  s21::Graph graph;
-  //  graph.LoadGraphFromFile(
-  //      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/materials/"
-  //      "examples/graph_1.txt");
-  graph.LoadGraphFromFile(
-      "/home/freiqq/Projects/Algorithms/SimpleNavigator/materials/examples/"
-      "graph_1.txt");
-
-  s21::Colony ac(graph.GetGraph());
-  //  ac.InitializeColony();
-    ac.BypassColony();
-//  ac.EvaporatePheromones();
-}
+// int main() {
+//   s21::Graph graph;
+//   //  graph.LoadGraphFromFile(
+//   //      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/materials/"
+//   //      "examples/graph_1.txt");
+//   graph.LoadGraphFromFile(
+//       "/home/freiqq/Projects/Algorithms/SimpleNavigator/materials/examples/"
+//       "graph_1.txt");
+//
+//   s21::Colony ac(graph.GetGraph());
+//   //  ac.InitializeColony();
+//     ac.BypassColony();
+////  ac.EvaporatePheromones();
+//}
