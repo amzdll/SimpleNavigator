@@ -8,8 +8,9 @@
 
 namespace Ui {
 class InteractionPanel;
-}
 
+}
+class GraphVisualizer;
 class InteractionPanel : public QWidget {
   Q_OBJECT
 
@@ -21,6 +22,10 @@ class InteractionPanel : public QWidget {
  private:
   GraphVisualizer *graph_visualizer_;
   Ui::InteractionPanel *ui;
+
+  void ConnectSignals();
+ private slots:
+  void FillTable();
 };
 
 #endif  // INTERACTION_PANEL_H

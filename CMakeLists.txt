@@ -10,4 +10,4 @@ enable_testing()
 #find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 add_subdirectory(graph_lib)
-add_subdirectory(app_interfaces/graphical_interface)
+add_subdirectory(applications/graphical_interface)

@@ -76,6 +76,25 @@ void GraphVisualizer::BFS(float start_vertex) {
 void GraphVisualizer::GetShortestPathBetweenVertices(float start_vertex,
                                                      float end_vertex) {}
 
+void GraphVisualizer::GetShortestPathBetweenTwoVertices(float start_vertex,
+                                                        float end_vertex) {
+  qDebug() << start_vertex << " " << end_vertex;
+  //
+  auto path = s21::GraphAlgorithms::GetShortestPathBetweenTwoVertices(
+      graph_, start_vertex, end_vertex);
+  DrawVertices();
+  QTimer::singleShot(300, this, [=]() {
+    for (auto vertex : path) {
+      DrawVertex(vertex, Qt::white, Qt::red);
+      QEventLoop loop;
+      QTimer::singleShot(300, &loop, &QEventLoop::quit);
+      loop.exec();
+    }
+  });
+}
+
+void GraphVisualizer::GetShortestPathBetweenAllVertices() {}
+
 void GraphVisualizer::TSM() {
   pixmap_.fill(Qt::black);
   s21::GraphAlgorithms::TsmResult result =

@@ -17,6 +17,7 @@
 #include "s21_graph.h"
 #include "s21_graph_algorithms.h"
 
+
 namespace Ui {
 class GraphVisualizer;
 }
@@ -25,19 +26,21 @@ class GraphVisualizer : public QWidget {
   Q_OBJECT
 
  public:
-  explicit GraphVisualizer(QWidget *parent = nullptr);
+  explicit GraphVisualizer(QWidget* parent = nullptr);
   ~GraphVisualizer();
-
  public slots:
   void OpenGraph();
   void DFS(float start_vertex);
   void BFS(float start_vertex);
   void GetShortestPathBetweenVertices(float start_vertex, float end_vertex);
+  void GetShortestPathBetweenTwoVertices(float start_vertex, float end_vertex);
+  void GetShortestPathBetweenAllVertices();
   void TSM();
 
   void Redraw();
 
  protected:
+  //todo: mb to private?
   void paintEvent(QPaintEvent *event) override;
 
  private:

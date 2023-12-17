@@ -26,6 +26,8 @@ class GraphAlgorithms {
   // Part 2
   static float GetShortestPathBetweenVertices(Graph &graph, float vertex1,
                                             float vertex2);
+  static std::vector<float> GetShortestPathBetweenTwoVertices(Graph &graph, float vertex1,
+                                              float vertex2);
   static matrix<float> GetShortestPathsBetweenAllVertices(Graph &graph);
 
   // Part 3

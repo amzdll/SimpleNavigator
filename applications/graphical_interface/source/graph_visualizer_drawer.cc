@@ -79,4 +79,3 @@ void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
   painter.drawText(textRect, Qt::AlignCenter, QString::number(vertex));
   update();
 }
-

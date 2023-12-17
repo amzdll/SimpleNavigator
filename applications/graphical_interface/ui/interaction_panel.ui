@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="OpenGraph">
+  <widget class="QPushButton" name="open_graph_btn">
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -26,7 +26,10 @@
     <string>Open graph</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Redraw">
+  <widget class="QPushButton" name="redraw_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -39,7 +42,10 @@
     <string>Redraw</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="DFS">
+  <widget class="QPushButton" name="dfs_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -52,7 +58,10 @@
     <string>DFS</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="BFS">
+  <widget class="QPushButton" name="bfs_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -65,27 +74,45 @@
     <string>BFS</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="DFS_Input">
+  <widget class="QLineEdit" name="dfs_input">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>16</x>
      <y>83</y>
-     <width>91</width>
+     <width>101</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>   Start vertex</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="BFS_Input">
+  <widget class="QLineEdit" name="bfs_input">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>16</x>
      <y>154</y>
-     <width>91</width>
+     <width>101</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="placeholderText">
+    <string>   Start vertex</string>
+   </property>
   </widget>
-  <widget class="QPushButton" name="GetShortestPathBetweenVertices">
+  <widget class="QPushButton" name="get_shortest_path_between_vertices_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -98,7 +125,10 @@
     <string>Get Shortest Path Between Vertices</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="GetShortestPathsBetweenAllVertices">
+  <widget class="QPushButton" name="get_shortest_paths_between_all_vertices_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -111,7 +141,10 @@
     <string>Get Shortest Paths Between All Vertices</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="TSM">
+  <widget class="QPushButton" name="tsm_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -124,7 +157,10 @@
     <string>Traveling</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="GetShortestPathsBetweenAllVertices_2">
+  <widget class="QPushButton" name="least_spanning_tree_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -137,7 +173,10 @@
     <string>Get Least Spanning Tree</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="path_table">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
@@ -145,6 +184,9 @@
      <width>470</width>
      <height>291</height>
     </rect>
+   </property>
+   <property name="tabKeyNavigation">
+    <bool>false</bool>
    </property>
    <column>
     <property name="text">
@@ -156,25 +198,61 @@
      <string>Path</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>Cost</string>
+    </property>
+   </column>
   </widget>
-  <widget class="QLineEdit" name="BFS_Input_2">
+  <widget class="QLineEdit" name="first_vertex_shortest_path_input">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>15</x>
      <y>340</y>
-     <width>221</width>
+     <width>140</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="placeholderText">
+    <string>   Start vertex</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="BFS_Input_3">
+  <widget class="QLineEdit" name="end_vertex_shortest_path_input">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>180</x>
      <y>340</y>
-     <width>221</width>
+     <width>140</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="placeholderText">
+    <string>   End vertex</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="shortest_path_result">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>340</y>
+     <width>140</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>   Cost</string>
    </property>
   </widget>
  </widget>

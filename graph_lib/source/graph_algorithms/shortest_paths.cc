@@ -49,4 +49,11 @@ float GraphAlgorithms::GetShortestPathBetweenVertices(Graph& graph, float vertex
 //  }
 //  return adjacency_matrix;
 //}
+
+std::vector<float> GraphAlgorithms::GetShortestPathBetweenTwoVertices(Graph& graph,
+                                                                      float vertex1,
+                                                                      float vertex2) {
+  return {5, 3 ,1, 2};
+}
+
 }  // namespace s21

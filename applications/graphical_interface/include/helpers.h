@@ -33,7 +33,7 @@ class Helpers {
         if (i != j) {
           QVector2D delta = vertices[j].second - vertices[i].second;
           qreal distance = delta.length();
-          force += delta.normalized() * (1.0 / distance) * k * distance;
+          force += delta.normalized() * float (1.f / distance) * k * distance;
         }
       }
       forces[i].second += force;
