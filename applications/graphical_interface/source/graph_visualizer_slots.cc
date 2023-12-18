@@ -42,12 +42,10 @@ void GraphVisualizer::OpenGraph(s21::Graph graph) {
   DrawGraph();
 }
 
-void GraphVisualizer::DFS(float start_vertex) {
-  auto dfc_vertices =
-      s21::GraphAlgorithms::DepthFirstSearch(graph_, start_vertex);
+void GraphVisualizer::DFS(const std::vector<float> &dfs_vertices) {
   DrawVertices();
   QTimer::singleShot(300, this, [=]() {
-    for (auto vertex : dfc_vertices) {
+    for (auto vertex : dfs_vertices) {
       DrawVertex(vertex, Qt::white, Qt::red);
       QEventLoop loop;
       QTimer::singleShot(300, &loop, &QEventLoop::quit);
@@ -56,9 +54,7 @@ void GraphVisualizer::DFS(float start_vertex) {
   });
 }
 
-void GraphVisualizer::BFS(float start_vertex) {
-  auto bfs_vertices =
-      s21::GraphAlgorithms::BreadthFirstSearch(graph_, start_vertex);
+void GraphVisualizer::BFS(const std::vector<float> &bfs_vertices) {
   DrawVertices();
   QTimer::singleShot(300, this, [=]() {
     for (auto vertex : bfs_vertices) {
@@ -70,10 +66,7 @@ void GraphVisualizer::BFS(float start_vertex) {
   });
 }
 
-void GraphVisualizer::GetShortestPathBetweenVertices(float start_vertex,
-                                                     float end_vertex) {}
-
-void GraphVisualizer::GetShortestPathBetweenTwoVertices(
+void GraphVisualizer::GetShortestPathBetweenVertices(
     const std::vector<float> &path) {
   DrawVertices();
   QTimer::singleShot(300, this, [=]() {
@@ -86,17 +79,15 @@ void GraphVisualizer::GetShortestPathBetweenTwoVertices(
   });
 }
 
-void GraphVisualizer::GetShortestPathBetweenAllVertices() {}
 
-void GraphVisualizer::TSM() {
+void GraphVisualizer::TSM(s21::GraphAlgorithms::TsmResult tsm_result) {
   pixmap_.fill(Qt::black);
-  s21::GraphAlgorithms::TsmResult result =
-      s21::GraphAlgorithms::SolveTravelingSalesmanProblem(graph_);
   QPainter painter(&pixmap_);
   QPen pen(Qt::white);
+
   for (int i = 1; i < adjacency_matrix_.GetRows(); ++i) {
     for (int j = i + 1; j < adjacency_matrix_.GetRows(); ++j) {
-      pen.setWidth(int(result.pheromones[i][j] + 1));
+      pen.setWidth(int(tsm_result.pheromones[i][j] + 1));
       painter.setPen(pen);
       if (adjacency_matrix_[i][j] != 0) {
         painter.drawLine(vertices_[i].second.toPointF(),

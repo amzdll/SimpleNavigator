@@ -3,28 +3,26 @@
 namespace s21 {
 void GraphAlgorithms::UpdateCost(float vertex, matrix<float>& adjacency_matrix,
                                  s21::queue<float>& adjacent_vertices,
-                                 std::list<float>& visited_vertices,
+                                 std::vector<float>& visited_vertices,
                                  std::map<float, float>& path_cost,
                                  std::map<float, float>& predecessor) {
-  int row_index = GetIndexOfVertex(vertex, adjacency_matrix);
-  for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
-    if (adjacency_matrix[row_index][col] > 0 &&
-        !Contains(visited_vertices, adjacency_matrix[row][col])) {
-      if (path_cost[adjacency_matrix[row][col]] >
-          adjacency_matrix[row_index][col] +
-              path_cost[adjacency_matrix[row_index][0]]) {
-        path_cost[adjacency_matrix[row][col]] =
-            adjacency_matrix[row_index][col] +
-            path_cost[adjacency_matrix[row_index][0]];
-        predecessor[adjacency_matrix[row][col]] = vertex; // Сохраняем предшественника
-        adjacent_vertices.push(adjacency_matrix[row][col]);
-      }
-    }
-  }
+//  int row_index = GetIndexOfVertex(vertex, adjacency_matrix);
+//  for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
+//    if (adjacency_matrix[row_index][col] > 0 &&
+//        !Contains(visited_vertices, adjacency_matrix[row][col])) {
+//      if (path_cost[adjacency_matrix[row][col]] >
+//          adjacency_matrix[row_index][col] +
+//              path_cost[adjacency_matrix[row_index][0]]) {
+//        path_cost[adjacency_matrix[row][col]] = adjacency_matrix[row_index][col] + path_cost[adjacency_matrix[row_index][0]];
+//        predecessor[adjacency_matrix[row][col]] = vertex;
+//        adjacent_vertices.push(adjacency_matrix[row][col]);
+//      }
+//    }
+//  }
 }
 void GraphAlgorithms::UpdateAdjacentVertices(
     float vertex, matrix<float>& adjacency_matrix,
-    s21::stack<float>& adjacent_vertices, std::list<float>& visited_vertices) {
+    s21::stack<float>& adjacent_vertices, std::vector<float>& visited_vertices) {
   int vertex_row_index = GetIndexOfVertex(vertex, adjacency_matrix);
   for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
     if (adjacency_matrix[vertex_row_index][col] != 0 &&
@@ -37,7 +35,7 @@ void GraphAlgorithms::UpdateAdjacentVertices(
 
 void GraphAlgorithms::UpdateAdjacentVertices(
     float vertex, matrix<float>& adjacency_matrix,
-    s21::queue<float>& adjacent_vertices, std::list<float>& visited_vertices) {
+    s21::queue<float>& adjacent_vertices, std::vector<float>& visited_vertices) {
   int vertex_row_index = GetIndexOfVertex(vertex, adjacency_matrix);
   for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
     if (adjacency_matrix[vertex_row_index][col] != 0 &&
@@ -58,8 +56,8 @@ int GraphAlgorithms::GetIndexOfVertex(float vertex,
   return 0;
 }
 
-bool GraphAlgorithms::Contains(const std::list<float>& list, float elem) {
-  return std::find(list.begin(), list.end(), elem) != list.end();
+bool GraphAlgorithms::Contains(const std::vector<float>& vector, float elem) {
+  return std::find(vector.begin(), vector.end(), elem) != vector.end();
 }
 
 bool GraphAlgorithms::Contains(const s21::stack<float>& stack, float elem) {
@@ -83,4 +81,5 @@ bool GraphAlgorithms::Contains(const s21::queue<float>& queue, float elem) {
   }
   return false;
 }
+
 }  // namespace s21

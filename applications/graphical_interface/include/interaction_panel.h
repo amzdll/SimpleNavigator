@@ -27,9 +27,15 @@ class InteractionPanel : public QWidget {
   void ConnectSignals();
 // private slots:
   void FillTable();
+  void OpenGraph();
+  void DFS();
+  void BFS();
+  void GetLeastSpanningTree();
   void GetShortestPathBetweenVertices();
   void GetShortestPathBetweenAllVertices();
-  void OpenGraph();
+  void GetShortestPathBetweenTwoVertices();
+  void TSM();
+
 };
 
 #endif  // INTERACTION_PANEL_H

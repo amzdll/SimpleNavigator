@@ -28,14 +28,14 @@ class GraphVisualizer : public QWidget {
  public:
   explicit GraphVisualizer(QWidget* parent = nullptr);
   ~GraphVisualizer();
- public slots:
+
   void OpenGraph(s21::Graph graph);
-  void DFS(float start_vertex);
-  void BFS(float start_vertex);
-  void GetShortestPathBetweenVertices(float start_vertex, float end_vertex);
-  void GetShortestPathBetweenTwoVertices(const std::vector<float> &path);
-  void GetShortestPathBetweenAllVertices();
-  void TSM();
+  void DFS(const std::vector<float> &dfs_vertices);
+  void BFS(const std::vector<float> &bfs_vertices);
+  // void Spintree
+  void GetShortestPathBetweenVertices(const std::vector<float> &path);
+  void TSM(s21::GraphAlgorithms::TsmResult tsm_result);
+ public slots:
 
   void Redraw();
 

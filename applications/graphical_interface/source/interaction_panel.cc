@@ -27,36 +27,19 @@ InteractionPanel::~InteractionPanel() { delete ui; }
 void InteractionPanel::ConnectSignals() {
   connect(ui->open_graph_btn, &QPushButton::clicked, this,
           &InteractionPanel::OpenGraph);
-  connect(ui->dfs_btn, &QPushButton::clicked, this, [this]() {
-    graph_visualizer_->DFS(ui->dfs_input->text().toFloat());
-  });
-  connect(ui->bfs_btn, &QPushButton::clicked, this, [this]() {
-    graph_visualizer_->BFS(ui->bfs_input->text().toFloat());
-  });
+  connect(ui->dfs_btn, &QPushButton::clicked, this, &InteractionPanel::DFS);
+  connect(ui->bfs_btn, &QPushButton::clicked, this, &InteractionPanel::BFS);
   connect(ui->get_shortest_path_between_vertices_btn, &QPushButton::clicked,
           this, &InteractionPanel::GetShortestPathBetweenVertices);
-
+  connect(ui->path_table, &QTableWidget::itemClicked,
+          this, &InteractionPanel::GetShortestPathBetweenTwoVertices);
   connect(ui->redraw_btn, &QPushButton::clicked, graph_visualizer_,
           &GraphVisualizer::Redraw);
-  connect(ui->tsm_btn, &QPushButton::clicked, graph_visualizer_,
-          &GraphVisualizer::TSM);
-  connect(ui->path_table, &QTableWidget::itemClicked, this,
-          &InteractionPanel::GetShortestPathBetweenAllVertices);
+  connect(ui->tsm_btn, &QPushButton::clicked, this,
+          &InteractionPanel::TSM);
   connect(ui->get_shortest_paths_between_all_vertices_btn,
-          &QPushButton::clicked, this, &InteractionPanel::FillTable);
-}
-
-void InteractionPanel::FillTable() {
-  auto *item1 = new QTableWidgetItem("1");
-  auto *item2 = new QTableWidgetItem("5");
-  auto *item12 = new QTableWidgetItem("3");
-  auto *item22 = new QTableWidgetItem("33");
-  ui->path_table->insertRow(ui->path_table->rowCount());
-  ui->path_table->insertRow(ui->path_table->rowCount());
-  ui->path_table->setItem(0, 0, item1);
-  ui->path_table->setItem(0, 1, item2);
-  ui->path_table->setItem(1, 0, item12);
-  ui->path_table->setItem(1, 1, item22);
+          &QPushButton::clicked, this,
+          &InteractionPanel::GetShortestPathBetweenAllVertices);
 }
 
 void InteractionPanel::OpenGraph() {
@@ -69,11 +52,43 @@ void InteractionPanel::OpenGraph() {
   }
 }
 
+void InteractionPanel::DFS() {
+  auto dfc_vertices = s21::GraphAlgorithms::DepthFirstSearch(
+      graph_, ui->dfs_input->text().toFloat());
+  graph_visualizer_->DFS(dfc_vertices);
+}
+
+void InteractionPanel::BFS() {
+  auto bfc_vertices = s21::GraphAlgorithms::BreadthFirstSearch(
+      graph_, ui->dfs_input->text().toFloat());
+  graph_visualizer_->BFS(bfc_vertices);
+}
+
+void InteractionPanel::GetLeastSpanningTree() {}
+
 void InteractionPanel::GetShortestPathBetweenAllVertices() {
-  auto path_info = s21::GraphAlgorithms::GetShortestPathBetweenVertices(
-      graph_, ui->first_vertex_shortest_path_input->text().toFloat(),
-      ui->end_vertex_shortest_path_input->text().toFloat());
-  graph_visualizer_->GetShortestPathBetweenTwoVertices(path_info.second);
+  auto shortest_paths =
+      s21::GraphAlgorithms::GetShortestPathsBetweenAllVertices(graph_);
+
+  ui->path_table->clearContents();
+  ui->path_table->setRowCount(0);
+
+  for (int row = 1; row < shortest_paths.GetRows(); ++row) {
+    for (int col = 1; col < shortest_paths.GetCols(); ++col) {
+      if (graph_.GetGraph()[row][col] != 0) {
+        ui->path_table->insertRow(ui->path_table->rowCount());
+        ui->path_table->setItem(
+            ui->path_table->rowCount() - 1, 0,
+            new QTableWidgetItem(QString::number(graph_.GetGraph()[row][0])));
+        ui->path_table->setItem(
+            ui->path_table->rowCount() - 1, 1,
+            new QTableWidgetItem(QString::number(graph_.GetGraph()[0][col])));
+        ui->path_table->setItem(
+            ui->path_table->rowCount() - 1, 2,
+            new QTableWidgetItem(QString::number(graph_.GetGraph()[row][col])));
+      }
+    }
+  }
 }
 
 void InteractionPanel::GetShortestPathBetweenVertices() {
@@ -81,5 +96,19 @@ void InteractionPanel::GetShortestPathBetweenVertices() {
       graph_, ui->first_vertex_shortest_path_input->text().toFloat(),
       ui->end_vertex_shortest_path_input->text().toFloat());
   ui->shortest_path_result->setText(QString::number(path_info.first));
-  graph_visualizer_->GetShortestPathBetweenTwoVertices(path_info.second);
+  graph_visualizer_->GetShortestPathBetweenVertices(path_info.second);
+}
+
+void InteractionPanel::GetShortestPathBetweenTwoVertices() {
+  auto path_info = s21::GraphAlgorithms::GetShortestPathBetweenVertices(
+      graph_,
+      ui->path_table->item(ui->path_table->currentRow(), 0)->text().toFloat(),
+      ui->path_table->item(ui->path_table->currentRow(), 1)->text().toFloat());
+  graph_visualizer_->GetShortestPathBetweenVertices(path_info.second);
+}
+
+void InteractionPanel::TSM() {
+  s21::GraphAlgorithms::TsmResult tsm_result =
+      s21::GraphAlgorithms::SolveTravelingSalesmanProblem(graph_);
+  graph_visualizer_->TSM(tsm_result);
 }

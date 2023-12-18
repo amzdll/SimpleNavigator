@@ -20,11 +20,11 @@ class GraphAlgorithms {
     double distance;
   };
   // Part 1
-  static std::list<float> DepthFirstSearch(Graph &graph, float start_vertex);
-  static std::list<float> BreadthFirstSearch(Graph &graph, float start_vertex);
+  static std::vector<float> DepthFirstSearch(Graph &graph, float start_vertex);
+  static std::vector<float> BreadthFirstSearch(Graph &graph, float start_vertex);
 
   // Part 2
-  static std::pair<int, std::vector<float>> GetShortestPathBetweenVertices(
+  static std::pair<float, std::vector<float>> GetShortestPathBetweenVertices(
       Graph &graph, float vertex1, float vertex2);
   static matrix<float> GetShortestPathsBetweenAllVertices(Graph &graph);
 
@@ -38,21 +38,20 @@ class GraphAlgorithms {
   static void UpdateAdjacentVertices(float vertex,
                                      matrix<float> &adjacency_matrix,
                                      s21::stack<float> &adjacent_vertices,
-                                     std::list<float> &visited_vertices);
+                                     std::vector<float> &visited_vertices);
   static void UpdateAdjacentVertices(float vertex,
                                      matrix<float> &adjacency_matrix,
                                      s21::queue<float> &adjacent_vertices,
-                                     std::list<float> &visited_vertices);
+                                     std::vector<float> &visited_vertices);
   static int GetIndexOfVertex(float vertex, matrix<float> &adjacency_matrix);
   static bool Contains(const s21::stack<float> &stack, float elem);
   static bool Contains(const s21::queue<float> &queue, float elem);
-  static bool Contains(const std::list<float> &list, float elem);
+  static bool Contains(const std::vector<float> &vector, float elem);
   static void UpdateCost(float vertex, matrix<float> &adjacency_matrix,
                          s21::queue<float> &adjacent_vertices,
-                         std::list<float> &visited_vertices,
+                         std::vector<float> &visited_vertices,
                          std::map<float, float> &path_cost,
                          std::map<float, float> &predecessor);
-  bool hasPath(s21::matrix<float> adjacency_matrix, float start, float end);
 };
 }  // namespace s21
 
