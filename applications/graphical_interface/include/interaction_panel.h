@@ -2,6 +2,7 @@
 #define INTERACTION_PANEL_H
 
 #include <QDoubleValidator>
+#include <QFileDialog>
 #include <QWidget>
 
 #include "graph_visualizer.h"
@@ -25,17 +26,12 @@ class InteractionPanel : public QWidget {
   Ui::InteractionPanel *ui;
 
   void ConnectSignals();
-// private slots:
-  void FillTable();
   void OpenGraph();
-  void DFS();
-  void BFS();
   void GetLeastSpanningTree();
-  void GetShortestPathBetweenVertices();
-  void GetShortestPathBetweenAllVertices();
-  void GetShortestPathBetweenTwoVertices();
+  void GetShortestPath();
+  void FillPathsTable();
+  void GetShortestPathItemTable();
   void TSM();
-
 };
 
 #endif  // INTERACTION_PANEL_H

@@ -11,7 +11,13 @@ namespace s21 {
 Colony::Colony(matrix<float> adjacency_matrix)
     : adjacency_matrix_(std::move(adjacency_matrix)) {
   global_pheromones_matrix_ =
-      matrix(adjacency_matrix_.GetRows(), adjacency_matrix_.GetCols(), 1.f);
+      matrix<float>(adjacency_matrix_.GetRows(), adjacency_matrix_.GetCols());
+  for (int row = 0; row < adjacency_matrix_.GetRows(); ++row) {
+    for (int col = 0; col < adjacency_matrix_.GetCols(); ++col) {
+      global_pheromones_matrix_[row][col] =
+          adjacency_matrix_[row][col] != 0.0 ? 1.f : 0;
+    }
+  }
   colony_configuration_.pheromon =
       float(local_pheromones_matrix_.GetRows() - 1);
   colony_configuration_.evaporation_rate = 3.5;

@@ -6,8 +6,7 @@ std::vector<float> GraphAlgorithms::DepthFirstSearch(Graph& graph,
   float vertex = start_vertex;
   matrix<float> adjacency_matrix = graph.GetGraph();
   stack<float> adjacent_vertices;
-  std::vector<float> visited_vertices;
-//  std::list<float> visited_vertices{static_cast<float>(start_vertex)};
+  std::vector<float> visited_vertices{start_vertex};
 
   if (!GetIndexOfVertex(start_vertex, adjacency_matrix)) {
     return {};

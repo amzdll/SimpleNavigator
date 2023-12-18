@@ -39,5 +39,4 @@ bool Graph::ExportGraphToDot(const std::string& filename) {
   file << dot_content.str();
   return true;
 }
-
 }  // namespace s21

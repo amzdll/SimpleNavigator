@@ -1,5 +1,3 @@
-#include <utility>
-
 #include "../ui/ui_graph_visualizer.h"
 #include "graph_visualizer.h"
 
@@ -23,6 +21,7 @@ void GraphVisualizer::InitGraph() {
   std::uniform_int_distribution<> dis(0, 850);
 
   for (int row = 1; row < rows; ++row) {
+    vertices_[row].first = adjacency_matrix_[0][row];
     vertices_[row].second = QVector2D(dis(gen), dis(gen));
     for (int col = 1; col < cols; ++col) {
       if (adjacency_matrix_[row][col] != 0) {
@@ -33,41 +32,15 @@ void GraphVisualizer::InitGraph() {
 }
 
 void GraphVisualizer::OpenGraph(s21::Graph graph) {
-  graph_ = std::move(graph);
-  adjacency_matrix_ = graph_.GetGraph();
+  adjacency_matrix_ = graph.GetGraph();
   pixmap_ = {};
   InitGraph();
-  vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
+  vertices_ = Helpers::ApplyForces(vertices_, graph.GetGraph());
   vertices_ = Helpers::CenterGraph(vertices_, width(), height());
   DrawGraph();
 }
 
-void GraphVisualizer::DFS(const std::vector<float> &dfs_vertices) {
-  DrawVertices();
-  QTimer::singleShot(300, this, [=]() {
-    for (auto vertex : dfs_vertices) {
-      DrawVertex(vertex, Qt::white, Qt::red);
-      QEventLoop loop;
-      QTimer::singleShot(300, &loop, &QEventLoop::quit);
-      loop.exec();
-    }
-  });
-}
-
-void GraphVisualizer::BFS(const std::vector<float> &bfs_vertices) {
-  DrawVertices();
-  QTimer::singleShot(300, this, [=]() {
-    for (auto vertex : bfs_vertices) {
-      DrawVertex(vertex, Qt::white, Qt::red);
-      QEventLoop loop;
-      QTimer::singleShot(300, &loop, &QEventLoop::quit);
-      loop.exec();
-    }
-  });
-}
-
-void GraphVisualizer::GetShortestPathBetweenVertices(
-    const std::vector<float> &path) {
+void GraphVisualizer::DrawPath(const std::vector<float> &path) {
   DrawVertices();
   QTimer::singleShot(300, this, [=]() {
     for (auto vertex : path) {
@@ -79,17 +52,16 @@ void GraphVisualizer::GetShortestPathBetweenVertices(
   });
 }
 
-
 void GraphVisualizer::TSM(s21::GraphAlgorithms::TsmResult tsm_result) {
   pixmap_.fill(Qt::black);
   QPainter painter(&pixmap_);
   QPen pen(Qt::white);
 
-  for (int i = 1; i < adjacency_matrix_.GetRows(); ++i) {
-    for (int j = i + 1; j < adjacency_matrix_.GetRows(); ++j) {
+  for (int i = 1; i < tsm_result.pheromones.GetRows(); ++i) {
+    for (int j = i + 1; j < tsm_result.pheromones.GetRows(); ++j) {
       pen.setWidth(int(tsm_result.pheromones[i][j] + 1));
       painter.setPen(pen);
-      if (adjacency_matrix_[i][j] != 0) {
+      if (tsm_result.pheromones[i][j] != 0) {
         painter.drawLine(vertices_[i].second.toPointF(),
                          vertices_[j].second.toPointF());
       }
@@ -100,10 +72,10 @@ void GraphVisualizer::TSM(s21::GraphAlgorithms::TsmResult tsm_result) {
   DrawEdgesValue();
 }
 
-void GraphVisualizer::Redraw() {
+void GraphVisualizer::Redraw(s21::Graph graph) {
   pixmap_ = {};
   InitGraph();
-  vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
+  vertices_ = Helpers::ApplyForces(vertices_, graph.GetGraph());
   vertices_ = Helpers::CenterGraph(vertices_, height(), width());
   DrawGraph();
 }

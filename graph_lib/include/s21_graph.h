@@ -2,10 +2,11 @@
 #define SIMPLENAVIGATOR_S_21_GRAPH_H
 
 #include <fstream>
+#include <map>
 #include <sstream>
 #include <string>
-#include <map>
 #include <vector>
+
 #include "matrix.h"
 
 namespace s21 {
@@ -16,10 +17,10 @@ class Graph {
   bool LoadGraphFromFile(const std::string& filename);
   bool ExportGraphToDot(const std::string& filename);
 
-  matrix<float> GetGraph() { return adjacency_matrix_; };
- private:
+  [[nodiscard]] const matrix<float>& GetGraph() const { return adjacency_matrix_; };
 
-  adjacency_vertices adjacency_vertices_;
+
+ private:
   matrix<float> adjacency_matrix_{};
 };
 }  // namespace s21

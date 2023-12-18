@@ -10,7 +10,7 @@ class Helpers {
  public:
   static QVector<QPair<float, QVector2D>> ApplyForces(
       QVector<QPair<float, QVector2D>> vertices,
-      s21::matrix<float> adjacency_matrix) {
+      const s21::matrix<float>& adjacency_matrix) {
     for (int i = 0; i < 500; ++i) {
       auto spring_forces = SpringForce(vertices, adjacency_matrix);
       auto repulsion_force = RepulsionForce(vertices, adjacency_matrix);
@@ -24,7 +24,7 @@ class Helpers {
 
   static QVector<QPair<float, QVector2D>> RepulsionForce(
       QVector<QPair<float, QVector2D>> vertices,
-      s21::matrix<float> adjacency_matrix) {
+      const s21::matrix<float>& adjacency_matrix) {
     const qreal k = -0.5;
     QVector<QPair<float, QVector2D>> forces(vertices.size(), {});
     for (int i = 1; i < vertices.size(); ++i) {
@@ -43,7 +43,7 @@ class Helpers {
 
   static QVector<QPair<float, QVector2D>> SpringForce(
       QVector<QPair<float, QVector2D>> vertices,
-      s21::matrix<float> adjacency_matrix) {
+      const s21::matrix<float>& adjacency_matrix) {
     const qreal k = 0.3;
     QVector<QPair<float, QVector2D>> forces(vertices.size(), {});
     for (int i = 1; i < vertices.size(); ++i) {
@@ -52,7 +52,7 @@ class Helpers {
           QVector2D delta = vertices[j].second - vertices[i].second;
           qreal distance = delta.length();
           QVector2D force =
-              delta.normalized() * (distance - adjacency_matrix[i][j] * 10) * k;
+              delta.normalized() * float(distance - adjacency_matrix[i][j] * 10) * k;
           forces[i].second += force;
           forces[j].second -= force;
         }

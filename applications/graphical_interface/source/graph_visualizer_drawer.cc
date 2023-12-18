@@ -9,20 +9,20 @@ void GraphVisualizer::paintEvent(QPaintEvent *event) {
   Q_UNUSED(event)
   QPainter painter(this);
   painter.drawPixmap(0, 0, pixmap_);
+  painter.end();
 }
 
 void GraphVisualizer::DrawGraph() {
   pixmap_ = QPixmap(size());
   pixmap_.fill(Qt::transparent);
-
   DrawEdges();
   DrawVertices();
   DrawEdgesValue();
 }
 
 void GraphVisualizer::DrawVertices() {
-  for (int row = 0, col = 1; col < adjacency_matrix_.GetCols(); ++col) {
-    DrawVertex(adjacency_matrix_[row][col], Qt::black, Qt::white);
+  for (auto vertex : vertices_) {
+    DrawVertex(vertex.first, Qt::black, Qt::white);
   }
 }
 
@@ -36,23 +36,19 @@ void GraphVisualizer::DrawEdgesValue() {
   painter.setOpacity(1.0);
   QFontMetricsF fontMetrics(font);
 
-  for (auto it = edge_weights_.cbegin(); it != edge_weights_.cend(); ++it) {
-    if (it.value() != 0) {
-      const QPair<int, int> &vertices = it.key();
+  for (auto itr = edge_weights_.cbegin(); itr != edge_weights_.cend(); ++itr) {
+    if (itr.value() != 0) {
+      const QPair<int, int> &vertices = itr.key();
       int vertex1 = vertices.first;
       int vertex2 = vertices.second;
-      QPointF center = (vertices_[vertex1].second.toPointF() +
-                        vertices_[vertex2].second.toPointF()) /
-                       2;
+      QPointF center = (vertices_[vertex1].second.toPointF() + vertices_[vertex2].second.toPointF()) / 2;
       QPointF textPosition =
-          center -
-          QPointF(
-              fontMetrics.boundingRect(QString::number(it.value())).width() / 2,
-              fontMetrics.boundingRect(QString::number(it.value())).height() /
-                  2);
-      painter.drawText(textPosition, QString::number(it.value()));
+          center - QPointF(fontMetrics.boundingRect(QString::number(itr.value())).width() / 2,
+                           fontMetrics.boundingRect(QString::number(itr.value())).height() /2);
+      painter.drawText(textPosition, QString::number(itr.value()));
     }
   }
+  painter.end();
 }
 
 void GraphVisualizer::DrawEdges() {
@@ -66,6 +62,7 @@ void GraphVisualizer::DrawEdges() {
       }
     }
   }
+  painter.end();
 }
 
 void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
@@ -77,5 +74,6 @@ void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
   QRectF textRect = QRectF(vertices_[vertex].second.x() - 10,
                            vertices_[vertex].second.y() - 10, 20, 20);
   painter.drawText(textRect, Qt::AlignCenter, QString::number(vertex));
+  painter.end();
   update();
 }

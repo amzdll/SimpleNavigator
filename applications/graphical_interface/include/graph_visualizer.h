@@ -2,7 +2,6 @@
 #define GRAPH_VISUALIZER_H
 
 #include <QApplication>
-#include <QFileDialog>
 #include <QPainter>
 #include <QPointF>
 #include <QTimer>
@@ -12,7 +11,6 @@
 #include <algorithm>
 
 #include "helpers.h"
-#include "list"
 #include "random"
 #include "s21_graph.h"
 #include "s21_graph_algorithms.h"
@@ -30,14 +28,12 @@ class GraphVisualizer : public QWidget {
   ~GraphVisualizer();
 
   void OpenGraph(s21::Graph graph);
-  void DFS(const std::vector<float> &dfs_vertices);
-  void BFS(const std::vector<float> &bfs_vertices);
   // void Spintree
-  void GetShortestPathBetweenVertices(const std::vector<float> &path);
+  void DrawPath(const std::vector<float> &path);
   void TSM(s21::GraphAlgorithms::TsmResult tsm_result);
  public slots:
 
-  void Redraw();
+  void Redraw(s21::Graph graph);
 
  protected:
   //todo: mb to private?
@@ -45,7 +41,6 @@ class GraphVisualizer : public QWidget {
 
  private:
   QPixmap pixmap_{};
-  s21::Graph graph_;
   s21::matrix<float> adjacency_matrix_{};
   QVector<QPair<float, QVector2D>> vertices_;
   QMap<QPair<int, int>, float> edge_weights_;

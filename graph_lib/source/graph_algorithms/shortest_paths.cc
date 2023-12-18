@@ -3,14 +3,13 @@
 
 namespace s21 {
 std::pair<float, std::vector<float>>
-GraphAlgorithms::GetShortestPathBetweenVertices(
-    Graph& graph, float vertex1, float vertex2) {
-  return {1,{vertex1, vertex2}};
+GraphAlgorithms::GetShortestPathBetweenVertices(Graph& graph, float vertex1,
+                                                float vertex2) {
+  return {1, {vertex1, vertex2}};
 }
 
-
- matrix<float> GraphAlgorithms::GetShortestPathsBetweenAllVertices(Graph&
- graph) {
+matrix<float> GraphAlgorithms::GetShortestPathsBetweenAllVertices(
+    Graph& graph) {
   return graph.GetGraph();
 }
 
