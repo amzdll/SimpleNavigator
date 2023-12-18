@@ -7,8 +7,8 @@
 #include <map>
 #include <vector>
 
-#include "s21_graph.h"
 #include "queue.h"
+#include "s21_graph.h"
 #include "stack.h"
 
 namespace s21 {
@@ -24,10 +24,8 @@ class GraphAlgorithms {
   static std::list<float> BreadthFirstSearch(Graph &graph, float start_vertex);
 
   // Part 2
-  static float GetShortestPathBetweenVertices(Graph &graph, float vertex1,
-                                            float vertex2);
-  static std::vector<float> GetShortestPathBetweenTwoVertices(Graph &graph, float vertex1,
-                                              float vertex2);
+  static std::pair<int, std::vector<float>> GetShortestPathBetweenVertices(
+      Graph &graph, float vertex1, float vertex2);
   static matrix<float> GetShortestPathsBetweenAllVertices(Graph &graph);
 
   // Part 3
@@ -52,7 +50,9 @@ class GraphAlgorithms {
   static void UpdateCost(float vertex, matrix<float> &adjacency_matrix,
                          s21::queue<float> &adjacent_vertices,
                          std::list<float> &visited_vertices,
-                         std::map<float, float> &path_cost);
+                         std::map<float, float> &path_cost,
+                         std::map<float, float> &predecessor);
+  bool hasPath(s21::matrix<float> adjacency_matrix, float start, float end);
 };
 }  // namespace s21
 

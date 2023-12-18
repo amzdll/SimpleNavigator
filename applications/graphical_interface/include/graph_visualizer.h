@@ -29,11 +29,11 @@ class GraphVisualizer : public QWidget {
   explicit GraphVisualizer(QWidget* parent = nullptr);
   ~GraphVisualizer();
  public slots:
-  void OpenGraph();
+  void OpenGraph(s21::Graph graph);
   void DFS(float start_vertex);
   void BFS(float start_vertex);
   void GetShortestPathBetweenVertices(float start_vertex, float end_vertex);
-  void GetShortestPathBetweenTwoVertices(float start_vertex, float end_vertex);
+  void GetShortestPathBetweenTwoVertices(const std::vector<float> &path);
   void GetShortestPathBetweenAllVertices();
   void TSM();
 

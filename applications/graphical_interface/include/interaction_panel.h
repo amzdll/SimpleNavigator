@@ -20,12 +20,15 @@ class InteractionPanel : public QWidget {
   ~InteractionPanel();
 
  private:
+  s21::Graph graph_;
   GraphVisualizer *graph_visualizer_;
   Ui::InteractionPanel *ui;
 
   void ConnectSignals();
- private slots:
+// private slots:
   void FillTable();
+  void GetShortestPathBetweenTwoVertices();
+  void OpenGraph();
 };
 
 #endif  // INTERACTION_PANEL_H

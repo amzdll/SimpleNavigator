@@ -4,7 +4,8 @@ namespace s21 {
 void GraphAlgorithms::UpdateCost(float vertex, matrix<float>& adjacency_matrix,
                                  s21::queue<float>& adjacent_vertices,
                                  std::list<float>& visited_vertices,
-                                 std::map<float, float>& path_cost) {
+                                 std::map<float, float>& path_cost,
+                                 std::map<float, float>& predecessor) {
   int row_index = GetIndexOfVertex(vertex, adjacency_matrix);
   for (int row = 0, col = 1; col < adjacency_matrix.GetCols(); ++col) {
     if (adjacency_matrix[row_index][col] > 0 &&
@@ -15,12 +16,12 @@ void GraphAlgorithms::UpdateCost(float vertex, matrix<float>& adjacency_matrix,
         path_cost[adjacency_matrix[row][col]] =
             adjacency_matrix[row_index][col] +
             path_cost[adjacency_matrix[row_index][0]];
+        predecessor[adjacency_matrix[row][col]] = vertex; // Сохраняем предшественника
+        adjacent_vertices.push(adjacency_matrix[row][col]);
       }
-      adjacent_vertices.push(adjacency_matrix[row][col]);
     }
   }
 }
-
 void GraphAlgorithms::UpdateAdjacentVertices(
     float vertex, matrix<float>& adjacency_matrix,
     s21::stack<float>& adjacent_vertices, std::list<float>& visited_vertices) {

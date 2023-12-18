@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "../ui/ui_graph_visualizer.h"
 #include "graph_visualizer.h"
 
@@ -30,19 +32,14 @@ void GraphVisualizer::InitGraph() {
   }
 }
 
-void GraphVisualizer::OpenGraph() {
-  QString file_name = QFileDialog::getOpenFileName(
-      nullptr, "Выберите файл", "../../../materials/examples", "*.txt");
-  if (!file_name.isEmpty()) {
-    if (graph_.LoadGraphFromFile(file_name.toStdString())) {
-      adjacency_matrix_ = graph_.GetGraph();
-      pixmap_ = {};
-      InitGraph();
-      vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
-      vertices_ = Helpers::CenterGraph(vertices_, width(), height());
-      DrawGraph();
-    }
-  }
+void GraphVisualizer::OpenGraph(s21::Graph graph) {
+  graph_ = std::move(graph);
+  adjacency_matrix_ = graph_.GetGraph();
+  pixmap_ = {};
+  InitGraph();
+  vertices_ = Helpers::ApplyForces(vertices_, adjacency_matrix_);
+  vertices_ = Helpers::CenterGraph(vertices_, width(), height());
+  DrawGraph();
 }
 
 void GraphVisualizer::DFS(float start_vertex) {
@@ -76,12 +73,8 @@ void GraphVisualizer::BFS(float start_vertex) {
 void GraphVisualizer::GetShortestPathBetweenVertices(float start_vertex,
                                                      float end_vertex) {}
 
-void GraphVisualizer::GetShortestPathBetweenTwoVertices(float start_vertex,
-                                                        float end_vertex) {
-  qDebug() << start_vertex << " " << end_vertex;
-  //
-  auto path = s21::GraphAlgorithms::GetShortestPathBetweenTwoVertices(
-      graph_, start_vertex, end_vertex);
+void GraphVisualizer::GetShortestPathBetweenTwoVertices(
+    const std::vector<float> &path) {
   DrawVertices();
   QTimer::singleShot(300, this, [=]() {
     for (auto vertex : path) {

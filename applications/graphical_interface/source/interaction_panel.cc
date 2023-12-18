@@ -25,25 +25,23 @@ InteractionPanel::InteractionPanel(GraphVisualizer *graph_visualizer,
 InteractionPanel::~InteractionPanel() { delete ui; }
 
 void InteractionPanel::ConnectSignals() {
-  connect(ui->open_graph_btn, &QPushButton::clicked, graph_visualizer_,
-          &GraphVisualizer::OpenGraph);
+  connect(ui->open_graph_btn, &QPushButton::clicked, this,
+          &InteractionPanel::OpenGraph);
   connect(ui->dfs_btn, &QPushButton::clicked, this, [this]() {
     graph_visualizer_->DFS(ui->dfs_input->text().toFloat());
   });
   connect(ui->bfs_btn, &QPushButton::clicked, this, [this]() {
     graph_visualizer_->BFS(ui->bfs_input->text().toFloat());
   });
+  connect(ui->get_shortest_path_between_vertices_btn, &QPushButton::clicked,
+          this, &InteractionPanel::GetShortestPathBetweenTwoVertices);
+
   connect(ui->redraw_btn, &QPushButton::clicked, graph_visualizer_,
           &GraphVisualizer::Redraw);
   connect(ui->tsm_btn, &QPushButton::clicked, graph_visualizer_,
           &GraphVisualizer::TSM);
   connect(ui->path_table, &QTableWidget::itemClicked, this, [this]() {
-    graph_visualizer_->GetShortestPathBetweenTwoVertices(
-        // refactor:: Need validate
-        ui->path_table->item(ui->path_table->currentRow(), 0)->text().toFloat(),
-        ui->path_table->item(ui->path_table->currentRow(), 1)
-            ->text()
-            .toFloat());
+    graph_visualizer_->GetShortestPathBetweenTwoVertices(std::vector<float>());
   });
   connect(ui->get_shortest_paths_between_all_vertices_btn,
           &QPushButton::clicked, this, &InteractionPanel::FillTable);
@@ -60,4 +58,22 @@ void InteractionPanel::FillTable() {
   ui->path_table->setItem(0, 1, item2);
   ui->path_table->setItem(1, 0, item12);
   ui->path_table->setItem(1, 1, item22);
+}
+
+void InteractionPanel::OpenGraph() {
+  QString file_name = QFileDialog::getOpenFileName(
+      nullptr, "Выберите файл", "../../../materials/examples", "*.txt");
+  if (!file_name.isEmpty()) {
+    if (graph_.LoadGraphFromFile(file_name.toStdString())) {
+      graph_visualizer_->OpenGraph(graph_);
+    }
+  }
+}
+
+void InteractionPanel::GetShortestPathBetweenTwoVertices() {
+  auto path_info = s21::GraphAlgorithms::GetShortestPathBetweenVertices(
+      graph_, ui->first_vertex_shortest_path_input->text().toFloat(),
+      ui->end_vertex_shortest_path_input->text().toFloat());
+  ui->shortest_path_result->setText(QString::number(path_info.first));
+  graph_visualizer_->GetShortestPathBetweenTwoVertices(path_info.second);
 }
