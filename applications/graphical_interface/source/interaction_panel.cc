@@ -64,19 +64,24 @@ void InteractionPanel::OpenGraph() {
 void InteractionPanel::GetLeastSpanningTree() {}
 
 void InteractionPanel::GetShortestPath() {
+  float start_vertex = ui->first_vertex_shortest_path_input->text().toFloat();
+  float end_vertex = ui->end_vertex_shortest_path_input->text().toFloat();
   auto path = s21::GraphAlgorithms::GetShortestPathBetweenVertices(
-      graph_, ui->first_vertex_shortest_path_input->text().toFloat(),
-      ui->end_vertex_shortest_path_input->text().toFloat());
+      graph_, start_vertex, end_vertex);
   ui->shortest_path_result->setText(QString::number(path.first));
   graph_visualizer_->DrawPath(path.second);
 }
 
 void InteractionPanel::GetShortestPathItemTable() {
-  auto path = s21::GraphAlgorithms::GetShortestPathBetweenVertices(
-      graph_,
-      ui->path_table->item(ui->path_table->currentRow(), 0)->text().toFloat(),
-      ui->path_table->item(ui->path_table->currentRow(), 1)->text().toFloat());
-  graph_visualizer_->DrawPath(path.second);
+  if (ui->path_table->item(ui->path_table->currentRow(), 2)->text() != "-") {
+    float start_vertex =
+        ui->path_table->item(ui->path_table->currentRow(), 0)->text().toFloat();
+    float end_vertex =
+        ui->path_table->item(ui->path_table->currentRow(), 1)->text().toFloat();
+    auto path = s21::GraphAlgorithms::GetShortestPathBetweenVertices(
+        graph_, start_vertex, end_vertex);
+    graph_visualizer_->DrawPath(path.second);
+  }
 }
 
 void InteractionPanel::FillPathsTable() {
