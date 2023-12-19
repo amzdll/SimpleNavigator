@@ -6,6 +6,17 @@ GraphVisualizer::GraphVisualizer(QWidget *parent)
   ui->setupUi(this);
   setAutoFillBackground(true);
   setPalette(QPalette(QColor(0, 0, 0)));
+  style_settings_.background_path =
+      "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
+      "static/map_background.jpeg";
+  QImage town_icon =
+      QImage(
+          "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
+          "static/town_icon.png")
+          .scaled(50, 50, Qt::KeepAspectRatio);
+  style_settings_.town_icon = town_icon;
+
+  pixmap_ = QPixmap(style_settings_.background_path);
 }
 
 GraphVisualizer::~GraphVisualizer() { delete ui; }
@@ -37,11 +48,13 @@ void GraphVisualizer::OpenGraph(s21::Graph graph) {
   InitGraph();
   vertices_ = Helpers::ApplyForces(vertices_, graph.GetGraph());
   vertices_ = Helpers::CenterGraph(vertices_, width(), height());
+  RecolorVertexImage(Qt::green);
   DrawGraph();
 }
 
 void GraphVisualizer::DrawPath(const std::vector<float> &path) {
   DrawVertices();
+  RecolorVertexImage(Qt::darkGreen);
   QTimer::singleShot(300, this, [=]() {
     for (auto vertex : path) {
       DrawVertex(vertex, Qt::white, Qt::red);

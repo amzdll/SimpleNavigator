@@ -13,14 +13,16 @@ void GraphVisualizer::paintEvent(QPaintEvent *event) {
 }
 
 void GraphVisualizer::DrawGraph() {
-  pixmap_ = QPixmap(size());
-  pixmap_.fill(Qt::transparent);
+  pixmap_ = QPixmap(
+      "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
+      "static/map_background.jpeg");
   DrawEdges();
   DrawVertices();
   DrawEdgesValue();
 }
 
 void GraphVisualizer::DrawVertices() {
+  RecolorVertexImage(Qt::green);
   for (auto vertex : vertices_) {
     DrawVertex(vertex.first, Qt::black, Qt::white);
   }
@@ -30,7 +32,7 @@ void GraphVisualizer::DrawEdgesValue() {
   QPainter painter(&pixmap_);
   QFont font;
   font.setBold(true);
-  font.setPointSize(14);
+  font.setPointSize(12);
   painter.setFont(font);
   painter.setPen(QPen(Qt::green, 2, Qt::SolidLine));
   painter.setOpacity(1.0);
@@ -41,10 +43,16 @@ void GraphVisualizer::DrawEdgesValue() {
       const QPair<int, int> &vertices = itr.key();
       int vertex1 = vertices.first;
       int vertex2 = vertices.second;
-      QPointF center = (vertices_[vertex1].second.toPointF() + vertices_[vertex2].second.toPointF()) / 2;
+      QPointF center = (vertices_[vertex1].second.toPointF() +
+                        vertices_[vertex2].second.toPointF()) /
+                       2;
       QPointF textPosition =
-          center - QPointF(fontMetrics.boundingRect(QString::number(itr.value())).width() / 2,
-                           fontMetrics.boundingRect(QString::number(itr.value())).height() /2);
+          center -
+          QPointF(
+              fontMetrics.boundingRect(QString::number(itr.value())).width() /
+                  2,
+              fontMetrics.boundingRect(QString::number(itr.value())).height() /
+                  2);
       painter.drawText(textPosition, QString::number(itr.value()));
     }
   }
@@ -53,7 +61,8 @@ void GraphVisualizer::DrawEdgesValue() {
 
 void GraphVisualizer::DrawEdges() {
   QPainter painter(&pixmap_);
-  painter.setPen(QPen(Qt::white, 2));
+  painter.setPen(QPen(Qt::green, 2, Qt::DashLine));
+
   for (int i = 1; i < adjacency_matrix_.GetRows(); ++i) {
     for (int j = i + 1; j < adjacency_matrix_.GetRows(); ++j) {
       if (adjacency_matrix_[i][j] != 0) {
@@ -68,12 +77,30 @@ void GraphVisualizer::DrawEdges() {
 void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
                                  Qt::GlobalColor vertex_color) {
   QPainter painter(&pixmap_);
-  painter.setPen(QPen(text_color));
+  QFont font;
+  font.setBold(true);
+  font.setPointSize(14);
+  painter.setFont(font);
+  painter.setPen(QPen(Qt::green));
   painter.setBrush(QBrush(vertex_color));
-  painter.drawEllipse(vertices_[vertex].second.toPointF(), 20, 20);
-  QRectF textRect = QRectF(vertices_[vertex].second.x() - 10,
-                           vertices_[vertex].second.y() - 10, 20, 20);
+  QRectF position;
+  position.setX(vertices_[vertex].second.toPointF().x() - 20);
+  position.setY(vertices_[vertex].second.toPointF().y() - 30);
+  painter.drawImage(position, style_settings_.town_icon);
+  QRectF textRect = QRectF(vertices_[vertex].second.x() - 5,
+                           vertices_[vertex].second.y() + 30, 20, 20);
   painter.drawText(textRect, Qt::AlignCenter, QString::number(vertex));
   painter.end();
   update();
+}
+
+void GraphVisualizer::RecolorVertexImage(const QColor &newColor) {
+  for (int y = 0; y < style_settings_.town_icon.height(); ++y) {
+    for (int x = 0; x < style_settings_.town_icon.width(); ++x) {
+      QColor pixelColor = style_settings_.town_icon.pixelColor(x, y);
+      if (pixelColor.alpha() > 0) {
+        style_settings_.town_icon.setPixelColor(x, y, newColor);
+      }
+    }
+  }
 }

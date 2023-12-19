@@ -37,14 +37,23 @@ class GraphVisualizer : public QWidget {
 
  protected:
   //todo: mb to private?
+
+
+
   void paintEvent(QPaintEvent *event) override;
 
  private:
+  struct style_settings {
+    QImage town_icon;
+    QString background_path;
+  };
+
   QPixmap pixmap_{};
   s21::matrix<float> adjacency_matrix_{};
   QVector<QPair<float, QVector2D>> vertices_;
   QMap<QPair<int, int>, float> edge_weights_;
   QTimer timer_;
+  style_settings style_settings_{};
 
   Ui::GraphVisualizer *ui;
 
@@ -57,6 +66,7 @@ class GraphVisualizer : public QWidget {
   void DrawEdgesValue();
   void DrawVertex(float vertex, Qt::GlobalColor text_color,
                   Qt::GlobalColor vertex_color);
+  void RecolorVertexImage(const QColor& newColor);
 };
 
 #endif  // GRAPH_VISUALIZER_H
