@@ -26,7 +26,13 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true">QPushButton {
+	background-color: black;
+ }
+
+QPushButton:hover {
+	background-color: green;
+ }</string>
    </property>
    <property name="text">
     <string>Open graph</string>

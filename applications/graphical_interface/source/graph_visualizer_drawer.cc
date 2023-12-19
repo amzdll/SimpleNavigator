@@ -80,9 +80,10 @@ void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
   QFont font;
   font.setBold(true);
   font.setPointSize(14);
-  painter.setFont(font);
   painter.setPen(QPen(Qt::green));
+  painter.setFont(font);
   painter.setBrush(QBrush(vertex_color));
+
   QRectF position;
   position.setX(vertices_[vertex].second.toPointF().x() - 20);
   position.setY(vertices_[vertex].second.toPointF().y() - 30);
@@ -91,6 +92,7 @@ void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
                            vertices_[vertex].second.y() + 30, 20, 20);
   painter.drawText(textRect, Qt::AlignCenter, QString::number(vertex));
   painter.end();
+
   update();
 }
 
