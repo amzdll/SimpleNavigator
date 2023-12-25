@@ -8,11 +8,11 @@ GraphVisualizer::GraphVisualizer(QWidget *parent)
   setPalette(QPalette(QColor(0, 0, 0)));
   style_settings_.background_path =
       "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
-      "static/map_background.jpeg";
+      "static/img/map_background.jpeg";
   QImage town_icon =
       QImage(
           "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
-          "static/town_icon.png")
+          "static/img/town_icon.png")
           .scaled(50, 50, Qt::KeepAspectRatio);
   style_settings_.town_icon = town_icon;
 

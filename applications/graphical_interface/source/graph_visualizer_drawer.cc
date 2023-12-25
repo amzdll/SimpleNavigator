@@ -13,9 +13,7 @@ void GraphVisualizer::paintEvent(QPaintEvent *event) {
 }
 
 void GraphVisualizer::DrawGraph() {
-  pixmap_ = QPixmap(
-      "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
-      "static/map_background.jpeg");
+  pixmap_ = QPixmap(style_settings_.background_path);
   DrawEdges();
   DrawVertices();
   DrawEdgesValue();

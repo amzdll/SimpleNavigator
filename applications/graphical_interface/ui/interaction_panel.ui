@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true"/>
   </property>
   <widget class="QPushButton" name="open_graph_btn">
    <property name="geometry">
@@ -26,13 +26,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-	background-color: black;
- }
-
-QPushButton:hover {
-	background-color: green;
- }</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Open graph</string>
@@ -70,7 +64,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>DFS</string>
@@ -89,7 +83,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>BFS</string>
@@ -143,26 +137,10 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Get Shortest Path Between Vertices</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="get_shortest_paths_between_all_vertices_btn">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>400</y>
-     <width>470</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Get Shortest Paths Between All Vertices</string>
    </property>
   </widget>
   <widget class="QPushButton" name="tsm_btn">
@@ -197,7 +175,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Get Least Spanning Tree</string>

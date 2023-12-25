@@ -31,7 +31,9 @@ else ()
     add_executable(graphical_interface  ${APPLICATION})
 endif ()
 
-target_link_libraries(graphical_interface PRIVATE Qt${QT_VERSION_MAJOR}::Widgets GraphLibrary)
+#configure_file(${CMAKE_SOURCE_DIR}/static/style.qss ${CMAKE_BINARY_DIR} COPYONLY)
+
+target_link_libraries(graphical_interface PRIVATE Qt6::Widgets GraphLibrary)
 target_include_directories(graphical_interface PUBLIC include ui)
 
 

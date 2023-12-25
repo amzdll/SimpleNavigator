@@ -42,7 +42,7 @@ void InteractionPanel::ConnectSignals() {
           this, &InteractionPanel::GetShortestPath);
   connect(ui->path_table, &QTableWidget::itemClicked, this,
           &InteractionPanel::GetShortestPathItemTable);
-  connect(ui->get_shortest_paths_between_all_vertices_btn,
+  connect(ui->get_shortest_path_between_vertices_btn,
           &QPushButton::clicked, this, &InteractionPanel::FillPathsTable);
   // TSM
   connect(ui->tsm_btn, &QPushButton::clicked, this, &InteractionPanel::TSM);
