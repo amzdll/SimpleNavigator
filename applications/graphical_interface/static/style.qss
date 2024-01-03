@@ -1,20 +1,3 @@
-QPushButton {
-    font: 16pt "Share Tech Mono";
-    font-weight: bold;
-	background-color: transparent;
-	color: rgb(38, 93, 19);
-	border: none;
- }
-
-
-QPushButton:hover {
-    font: 16pt "Share Tech Mono";
-    font-weight: bold;
-    background-color: rgb(38, 93, 19);
-	color: gray;
-	border: none;
- }
-
 QLineEdit {
     border: 1px solid green;
 }

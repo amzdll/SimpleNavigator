@@ -26,7 +26,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>Open graph</string>
@@ -45,7 +56,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>Redraw</string>
@@ -64,7 +86,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>DFS</string>
@@ -83,7 +116,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>BFS</string>
@@ -137,7 +181,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>Get Shortest Path Between Vertices</string>
@@ -156,7 +211,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>Traveling</string>
@@ -175,7 +241,18 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+    background-color: transparent;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: rgb(38, 173, 19);
+}
+
+QPushButton:hover {
+    background-color: green;
+    font: 16px &quot;JetBrains Mono&quot;;
+    color: black;
+    border: 1px solid transparent; 
+}</string>
    </property>
    <property name="text">
     <string>Get Least Spanning Tree</string>

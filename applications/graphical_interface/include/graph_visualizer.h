@@ -30,7 +30,7 @@ class GraphVisualizer : public QWidget {
   void OpenGraph(s21::Graph graph);
   // void Spintree
   void DrawPath(const std::vector<float> &path);
-  void TSM(s21::GraphAlgorithms::TsmResult tsm_result);
+  void TSM(const s21::GraphAlgorithms::TsmResult& tsm_result);
  public slots:
 
   void Redraw(s21::Graph graph);

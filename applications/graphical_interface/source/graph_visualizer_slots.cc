@@ -7,12 +7,12 @@ GraphVisualizer::GraphVisualizer(QWidget *parent)
   setAutoFillBackground(true);
   setPalette(QPalette(QColor(0, 0, 0)));
   style_settings_.background_path =
-      "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
-      "static/img/map_background.jpeg";
+      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/applications/"
+      "graphical_interface/static/img/map_background.png";
   QImage town_icon =
       QImage(
-          "/home/freiqq/Other/SimpleNavigator/applications/graphical_interface/"
-          "static/img/town_icon.png")
+          "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/applications/"
+          "graphical_interface/static/img/town_icon.png")
           .scaled(50, 50, Qt::KeepAspectRatio);
   style_settings_.town_icon = town_icon;
 
@@ -65,11 +65,10 @@ void GraphVisualizer::DrawPath(const std::vector<float> &path) {
   });
 }
 
-void GraphVisualizer::TSM(s21::GraphAlgorithms::TsmResult tsm_result) {
-  pixmap_.fill(Qt::black);
+void GraphVisualizer::TSM(const s21::GraphAlgorithms::TsmResult& tsm_result) {
+  pixmap_ = QPixmap(style_settings_.background_path);
   QPainter painter(&pixmap_);
-  QPen pen(Qt::white);
-
+  QPen pen(Qt::green, 2, Qt::DashLine);
   for (int i = 1; i < tsm_result.pheromones.GetRows(); ++i) {
     for (int j = i + 1; j < tsm_result.pheromones.GetRows(); ++j) {
       pen.setWidth(int(tsm_result.pheromones[i][j] + 1));
