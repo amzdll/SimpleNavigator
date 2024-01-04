@@ -33,6 +33,17 @@ struct Ant {
 
 class Colony {
  public:
+  /////
+  void PrintMatrix(const s21::matrix<float>& matrix) {
+    for (int i = 0; i < matrix.GetRows(); ++i) {
+      for (int j = 0; j < matrix.GetCols(); ++j) {
+        std::cout << matrix[i][j] << " ";
+      }
+      std::cout << std::endl;
+    }
+  }
+  /////
+
   explicit Colony(matrix<float> adjacency_matrix);
   void InitializeColony();
   void BypassColony();
