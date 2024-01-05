@@ -1,17 +1,24 @@
 
 #include "ant_colony_optimization.h"
 
+#include <numeric>
 #include <random>
 #include <utility>
-#include <numeric>
 
 #include "iostream"
 #include "unordered_map"
 
+/*
+ * инициализация муравьев
+ * проход муравья
+ * испарения феромона = const / длину маршрута
+ * */
+
 namespace s21 {
-Colony::Colony(matrix<float> adjacency_matrix)
+AntColonyOptimization::AntColonyOptimization(matrix<float> adjacency_matrix)
     : adjacency_matrix_(std::move(adjacency_matrix)) {
-  global_pheromones_matrix_ = matrix<float>(adjacency_matrix_.GetRows(), adjacency_matrix_.GetCols());
+  global_pheromones_matrix_ =
+      matrix<float>(adjacency_matrix_.GetRows(), adjacency_matrix_.GetCols());
   for (int row = 1; row < adjacency_matrix_.GetRows(); ++row) {
     for (int col = 1; col < adjacency_matrix_.GetCols(); ++col) {
       global_pheromones_matrix_[row][col] =
@@ -19,38 +26,38 @@ Colony::Colony(matrix<float> adjacency_matrix)
     }
   }
 
-
   // temp
-//  for (int row = 1, col = 0; row < adjacency_matrix_.GetCols(); ++row) {
-//    global_pheromones_matrix_[row][col] = adjacency_matrix_[row][col];
-//  }
-//
-//  for (int row = 0, col = 1; col < adjacency_matrix_.GetCols(); ++col) {
-//    global_pheromones_matrix_[row][col] = adjacency_matrix_[row][col];
-//  }
+  //  for (int row = 1, col = 0; row < adjacency_matrix_.GetCols(); ++row) {
+  //    global_pheromones_matrix_[row][col] = adjacency_matrix_[row][col];
+  //  }
+  //
+  //  for (int row = 0, col = 1; col < adjacency_matrix_.GetCols(); ++col) {
+  //    global_pheromones_matrix_[row][col] = adjacency_matrix_[row][col];
+  //  }
 
-  colony_configuration_.pheromon = float(local_pheromones_matrix_.GetRows() - 1);
+  colony_configuration_.pheromone =
+      float(local_pheromones_matrix_.GetRows() - 1);
   colony_configuration_.evaporation_rate = 0.5;
 }
 
-void Colony::BypassColony() {
+void AntColonyOptimization::BypassColony() {
   EvaporatePheromones();
-  PrintMatrix(global_pheromones_matrix_);
-  local_pheromones_matrix_ = global_pheromones_matrix_;
-  matrix<float> change_matrix =  ;
-  AntBypass(1);
-//    for (int row = 1; row < global_pheromones_matrix_.GetRows(); ++row) {
-//      AntBypass(row);
-//      for (int i = 1; i < change_matrix.GetRows(); ++i) {
-//        for (int j = 1; j < change_matrix.GetCols(); ++j) {
-//          change_matrix[i][j] += local_pheromones_matrix_[i][j];
-//        }
-//      }
-//    }
+  //  PrintMatrix(global_pheromones_matrix_);
+  //  local_pheromones_matrix_ = global_pheromones_matrix_;
+  //  matrix<float> change_matrix =  ;
+  AntBypass(Ant(1));
+  //    for (int row = 1; row < global_pheromones_matrix_.GetRows(); ++row) {
+  //      AntBypass(row);
+  //      for (int i = 1; i < change_matrix.GetRows(); ++i) {
+  //        for (int j = 1; j < change_matrix.GetCols(); ++j) {
+  //          change_matrix[i][j] += local_pheromones_matrix_[i][j];
+  //        }
+  //      }
+  //    }
   tsm_result_.pheromones = global_pheromones_matrix_;
 }
 
-void Colony::EvaporatePheromones() const {
+void AntColonyOptimization::EvaporatePheromones() const {
   for (int i = 1; i < global_pheromones_matrix_.GetRows(); ++i) {
     for (int j = 1; j < global_pheromones_matrix_.GetCols(); ++j) {
       global_pheromones_matrix_[i][j] *= colony_configuration_.evaporation_rate;
@@ -58,37 +65,69 @@ void Colony::EvaporatePheromones() const {
   }
 }
 
-void Colony::AntBypass(int start_position) {
-  std::map<float, float> visited_vertices;
-  std::vector<float> cost_vertices;
-  float path_cost = 0;
-  float partial_sum = 0;
-  std::random_device rd;
-  std::mt19937 gen(rd());
-
-  std::uniform_real_distribution<> dis(0.0, 1.0);
-  double random_float = dis(gen);
-  for (int row = start_position, col = 1; col < adjacency_matrix_.GetCols(); ++col) {
-    if (adjacency_matrix_[row][col] != 0 && !visited_vertices.count(adjacency_matrix_[row][col])) {
-      visited_vertices.insert({col, adjacency_matrix_[row][col]});
-      path_cost += adjacency_matrix_[row][col];
+std::unordered_map<float, float> AntColonyOptimization::AccessAvailableVertices(
+    const Ant& ant) {
+  std::unordered_map<float, float> available_vertices{};
+  for (int row = ant.current_position, col = 1;
+       col < adjacency_matrix_.GetCols(); ++col) {
+    if (global_pheromones_matrix_[row][col] != 0 &&
+        !ant.visited_vertices.count(adjacency_matrix_[row][col])) {
+      available_vertices.insert(
+          {adjacency_matrix_[0][col], global_pheromones_matrix_[row][col]});
     }
   }
-
-  for (const auto vertex : visited_vertices) {
-    cost_vertices.emplace_back(vertex.second / path_cost + partial_sum);
-    partial_sum += vertex.second / path_cost;
-  }
-
-  for (const auto vertex : cost_vertices) {
-    std::cout << vertex << std::endl;
-  }
+  return available_vertices;
 }
 
-GraphAlgorithms::TsmResult Colony::GetResult() { return tsm_result_; }
+float AntColonyOptimization::AntStepChoice(
+    std::unordered_map<float, float> available_vertices) {
+  float total_pheromones = 0;
+  float partial_sum = 0;
+
+  for (auto const& vertex : available_vertices) {
+    total_pheromones += vertex.second;
+  }
+
+  for (auto vertex : available_vertices) {
+    partial_sum += vertex.second / total_pheromones;
+    vertex.second = vertex.second / total_pheromones + partial_sum;
+  }
+
+
+  for (auto i : available_vertices) {
+    std::cout << i.first << " " << i.second << std::endl;
+  }
+
+  return 0;
+}
+
+void AntColonyOptimization::AntBypass(Ant ant) {
+  AntStepChoice(AccessAvailableVertices(ant));
+  //  std::random_device rd;
+  //  std::mt19937 gen(rd());
+  //  std::uniform_real_distribution<> dis(0.0, 1.0);
+  //  double random_float = dis(gen);
+  //  std::cout << random_float << std::endl;
+
+  //  for (const auto vertex : visited_vertices) {
+  //    cost_vertices.emplace_back(vertex.second / path_cost + partial_sum);
+  //    partial_sum += vertex.second / path_cost;
+  //  }
+
+  //  for (const auto vertex : cost_vertices) {
+  //    std::cout << vertex << std::endl;
+  //  }
+}
+
+GraphAlgorithms::TsmResult AntColonyOptimization::GetResult() {
+  return tsm_result_;
+}
+
+AntColonyOptimization::Ant::Ant(float start_position)
+    : current_position(start_position) {}
 
 }  // namespace s21
-// namespace s21
+   // namespace s21
 
 // int main() {
 //   s21::Graph graph;
@@ -104,3 +143,5 @@ GraphAlgorithms::TsmResult Colony::GetResult() { return tsm_result_; }
 //     ac.BypassColony();
 ////  ac.EvaporatePheromones();
 //}
+
+// lower_bound

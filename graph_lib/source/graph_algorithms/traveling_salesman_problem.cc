@@ -6,7 +6,7 @@
 namespace s21 {
 GraphAlgorithms::TsmResult GraphAlgorithms::SolveTravelingSalesmanProblem(
     Graph& graph) {
-  Colony colony(graph.GetGraph());
+  AntColonyOptimization colony(graph.GetGraph());
   colony.BypassColony();
   return colony.GetResult();
 }

@@ -11,29 +11,11 @@
 
 namespace s21 {
 
-struct Ant {
+class AntColonyOptimization {
  public:
-  Ant() = default;
-  Ant(const matrix<float>& adjacency_matrix, int start_position)
-      : adjacency_matrix_(adjacency_matrix), start_position_(start_position) {}
-  //  explicit Ant(const  int start_position) : start_position_(start_position)
-  //  {}
-  ~Ant() = default;
+  explicit AntColonyOptimization(matrix<float> adjacency_matrix);
 
-  void Bypass(const matrix<float>& adjacency_matrix);
-  int PathSelection(float* path, int size);
-
- private:
-  bool IsVisited(int vertex);
-
-  const matrix<float>& adjacency_matrix_{};
-  std::unordered_set<int> visited_vertices_{};
-  int start_position_{};
-};
-
-class Colony {
- public:
-  /////
+  // temp
   void PrintMatrix(const s21::matrix<float>& matrix) {
     for (int i = 0; i < matrix.GetRows(); ++i) {
       for (int j = 0; j < matrix.GetCols(); ++j) {
@@ -42,29 +24,44 @@ class Colony {
       std::cout << std::endl;
     }
   }
-  /////
+  //
 
-  explicit Colony(matrix<float> adjacency_matrix);
-  void InitializeColony();
   void BypassColony();
-  void AntBypass(int start_position);
-  void EvaporatePheromones() const;
 
   GraphAlgorithms::TsmResult GetResult();
+
  private:
+  struct Ant {
+    Ant(float start_position);
+
+    Ant() = delete;
+    Ant(Ant&) = delete;
+    Ant(Ant&&) = delete;
+    ~Ant() = default;
+
+    float current_position;
+    float path_cost;
+    std::unordered_set<float> visited_vertices;
+    matrix<float> pheromone_matrix;
+  };
+
   struct ColonyConfiguration {
-    float pheromon;
+    float pheromone;
     float evaporation_rate;
   };
+
   GraphAlgorithms::TsmResult tsm_result_;
   ColonyConfiguration colony_configuration_{};
-  std::vector<Ant> colony_;
 
   matrix<float> adjacency_matrix_{};
   matrix<float> global_pheromones_matrix_{};
   matrix<float> local_pheromones_matrix_{};
-  //  ant ant_;
 
+  float AntStepChoice(std::unordered_map<float, float> available_vertices);
+  std::unordered_map<float, float> AccessAvailableVertices(const Ant& ant);
+
+  void AntBypass(Ant ant);
+  void EvaporatePheromones() const;
 };
 
 }  // namespace s21
