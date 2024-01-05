@@ -57,11 +57,12 @@ class AntColonyOptimization {
   matrix<float> global_pheromones_matrix_{};
   matrix<float> local_pheromones_matrix_{};
 
-  float AntStepChoice(std::unordered_map<float, float> available_vertices);
-  std::unordered_map<float, float> AccessAvailableVertices(const Ant& ant);
+  float AntStepChoice(std::vector<std::pair<float, float>> available_vertices);
+  std::vector<std::pair<float, float>> AccessAvailableVertices(const Ant& ant);
 
   void AntBypass(Ant ant);
   void EvaporatePheromones() const;
+  float GetDistanceBetweenVertex(float f_vertex, float s_vertex);
 };
 
 }  // namespace s21

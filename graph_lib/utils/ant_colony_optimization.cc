@@ -65,48 +65,56 @@ void AntColonyOptimization::EvaporatePheromones() const {
   }
 }
 
-std::unordered_map<float, float> AntColonyOptimization::AccessAvailableVertices(
-    const Ant& ant) {
-  std::unordered_map<float, float> available_vertices{};
+std::vector<std::pair<float, float>>
+AntColonyOptimization::AccessAvailableVertices(const Ant& ant) {
+  std::vector<std::pair<float, float>> available_vertices{};
   for (int row = ant.current_position, col = 1;
        col < adjacency_matrix_.GetCols(); ++col) {
     if (global_pheromones_matrix_[row][col] != 0 &&
         !ant.visited_vertices.count(adjacency_matrix_[row][col])) {
-      available_vertices.insert(
-          {adjacency_matrix_[0][col], global_pheromones_matrix_[row][col]});
+      available_vertices.emplace_back(adjacency_matrix_[0][col],
+                                      global_pheromones_matrix_[row][col]);
     }
   }
   return available_vertices;
 }
 
 float AntColonyOptimization::AntStepChoice(
-    std::unordered_map<float, float> available_vertices) {
+    std::vector<std::pair<float, float>> available_vertices) {
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_real_distribution<> dis(0.0, 1.0);
+
   float total_pheromones = 0;
   float partial_sum = 0;
+  float vertex;
+  double probability = dis(gen);
 
-  for (auto const& vertex : available_vertices) {
-    total_pheromones += vertex.second;
+  for (auto const& v : available_vertices) {
+    total_pheromones += v.second;
   }
 
-  for (auto vertex : available_vertices) {
-    partial_sum += vertex.second / total_pheromones;
-    vertex.second = vertex.second / total_pheromones + partial_sum;
+  for (auto& v : available_vertices) {
+    vertex = v.first;
+    partial_sum += v.second / total_pheromones;
+    v.second = v.second / total_pheromones + partial_sum - v.second;
+    if (probability <= v.second) {
+      return vertex;
+    }
   }
-
-
-  for (auto i : available_vertices) {
-    std::cout << i.first << " " << i.second << std::endl;
-  }
-
   return 0;
 }
 
 void AntColonyOptimization::AntBypass(Ant ant) {
-  AntStepChoice(AccessAvailableVertices(ant));
-  //  std::random_device rd;
-  //  std::mt19937 gen(rd());
-  //  std::uniform_real_distribution<> dis(0.0, 1.0);
-  //  double random_float = dis(gen);
+  float next_position = AntStepChoice(AccessAvailableVertices(ant));
+  ant.path_cost += GetDistanceBetweenVertex(ant.current_position, next_position);
+  ant.current_position = next_position;
+  ant.visited_vertices.emplace(next_position);
+
+  for (int i = 0; i < ; ++i) {
+
+  }
+
   //  std::cout << random_float << std::endl;
 
   //  for (const auto vertex : visited_vertices) {
@@ -119,15 +127,37 @@ void AntColonyOptimization::AntBypass(Ant ant) {
   //  }
 }
 
+float AntColonyOptimization::GetDistanceBetweenVertex(float f_vertex,
+                                                      float s_vertex) {
+  int row_index = 0;
+  int col_index = 0;
+
+  for (int row = 0; row < adjacency_matrix_.GetRows(); ++row) {
+    if (adjacency_matrix_[row][0] == f_vertex) {
+      row_index = row;
+      break;
+    }
+  }
+
+  for (int col = 0; col < adjacency_matrix_.GetCols(); ++col) {
+    if (adjacency_matrix_[0][col] == s_vertex) {
+      col_index = col;
+      break;
+    }
+  }
+  return adjacency_matrix_[row_index][col_index];
+}
+
 GraphAlgorithms::TsmResult AntColonyOptimization::GetResult() {
   return tsm_result_;
 }
 
 AntColonyOptimization::Ant::Ant(float start_position)
-    : current_position(start_position) {}
+    : current_position(start_position) {
+  visited_vertices.emplace(start_position);
+}
 
 }  // namespace s21
-   // namespace s21
 
 // int main() {
 //   s21::Graph graph;
