@@ -11,4 +11,6 @@ GraphAlgorithms::TsmResult GraphAlgorithms::SolveTravelingSalesmanProblem(
   return colony.GetResult();
 }
 
+
+
 }  // namespace s21

@@ -13,12 +13,9 @@ namespace s21 {
 class Graph {
  public:
   using adjacency_vertices = std::map<float, std::vector<float>>;
-
   bool LoadGraphFromFile(const std::string& filename);
   bool ExportGraphToDot(const std::string& filename);
-
   [[nodiscard]] const matrix<float>& GetGraph() const { return adjacency_matrix_; };
-
 
  private:
   matrix<float> adjacency_matrix_{};

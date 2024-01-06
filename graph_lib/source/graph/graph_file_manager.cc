@@ -15,6 +15,7 @@ bool Graph::LoadGraphFromFile(const std::string& filename) {
       file_data >> adjacency_matrix[row][col];
     }
   }
+
   adjacency_matrix_ = adjacency_matrix;
   file_data.close();
   return true;
@@ -39,4 +40,5 @@ bool Graph::ExportGraphToDot(const std::string& filename) {
   file << dot_content.str();
   return true;
 }
+
 }  // namespace s21

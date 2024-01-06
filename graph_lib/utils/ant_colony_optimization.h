@@ -39,9 +39,10 @@ class AntColonyOptimization {
     Ant(Ant&&) = delete;
     ~Ant() = default;
 
+    float start_position;
     float current_position;
     float path_cost;
-    std::unordered_set<float> visited_vertices;
+    std::vector<float> visited_vertices;
     matrix<float> pheromone_matrix;
   };
 
@@ -56,11 +57,12 @@ class AntColonyOptimization {
   matrix<float> adjacency_matrix_{};
   matrix<float> global_pheromones_matrix_{};
   matrix<float> local_pheromones_matrix_{};
+  std::map<float, int> vertex_indices_;
 
   float AntStepChoice(std::vector<std::pair<float, float>> available_vertices);
   std::vector<std::pair<float, float>> AccessAvailableVertices(const Ant& ant);
 
-  void AntBypass(Ant ant);
+  matrix<float> AntBypass(Ant ant);
   void EvaporatePheromones() const;
   float GetDistanceBetweenVertex(float f_vertex, float s_vertex);
 };
