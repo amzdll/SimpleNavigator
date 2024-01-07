@@ -1,3 +1,8 @@
 QLineEdit {
+    color: green;
     border: 1px solid green;
+}
+
+QTableWidget::item {
+    color: green;
 }

@@ -4,12 +4,14 @@
 GraphVisualizer::GraphVisualizer(QWidget *parent)
     : QWidget(parent), ui(new Ui::GraphVisualizer) {
   ui->setupUi(this);
+  ConfigureStyleSettings();
+}
+
+void GraphVisualizer::ConfigureStyleSettings() {
   setAutoFillBackground(true);
   setPalette(QPalette(QColor(0, 0, 0)));
-
   style_settings_.background_path = ":resources/img/map_background.png";
   style_settings_.town_icon = QImage(":resources/img/town_icon.png").scaled(50, 50, Qt::KeepAspectRatio);
-
   pixmap_ = QPixmap(style_settings_.background_path);
 }
 
@@ -36,7 +38,7 @@ void GraphVisualizer::InitGraph() {
   }
 }
 
-void GraphVisualizer::OpenGraph(s21::Graph graph) {
+void GraphVisualizer::OpenGraph(const s21::Graph& graph) {
   adjacency_matrix_ = graph.GetGraph();
   pixmap_ = {};
   InitGraph();
@@ -78,7 +80,7 @@ void GraphVisualizer::TSM(const s21::GraphAlgorithms::TsmResult &tsm_result) {
   DrawEdgesValue();
 }
 
-void GraphVisualizer::Redraw(s21::Graph graph) {
+void GraphVisualizer::Redraw(const s21::Graph& graph) {
   pixmap_ = {};
   InitGraph();
   vertices_ = Helpers::ApplyForces(vertices_, graph.GetGraph());

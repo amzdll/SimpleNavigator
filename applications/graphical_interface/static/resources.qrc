@@ -5,4 +5,10 @@
         <file>img/map_background.png</file>
         <file>img/map_background.jpeg</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>font/JetBrainsMono.ttf</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file>style.qss</file>
+    </qresource>
 </RCC>

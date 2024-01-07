@@ -27,13 +27,13 @@ class GraphVisualizer : public QWidget {
   explicit GraphVisualizer(QWidget* parent = nullptr);
   ~GraphVisualizer();
 
-  void OpenGraph(s21::Graph graph);
+  void OpenGraph(const s21::Graph& graph);
   // void Spintree
   void DrawPath(const std::vector<float> &path);
   void TSM(const s21::GraphAlgorithms::TsmResult& tsm_result);
  public slots:
 
-  void Redraw(s21::Graph graph);
+  void Redraw(const s21::Graph& graph);
 
  protected:
   //todo: mb to private?
@@ -58,7 +58,7 @@ class GraphVisualizer : public QWidget {
   Ui::GraphVisualizer *ui;
 
   void InitGraph();
-
+  void ConfigureStyleSettings();
   // todo: void ChangeWeightsGraph();
   void DrawGraph();
   void DrawEdges();
@@ -67,6 +67,7 @@ class GraphVisualizer : public QWidget {
   void DrawVertex(float vertex, Qt::GlobalColor text_color,
                   Qt::GlobalColor vertex_color);
   void RecolorVertexImage(const QColor& newColor);
+
 };
 
 #endif  // GRAPH_VISUALIZER_H
