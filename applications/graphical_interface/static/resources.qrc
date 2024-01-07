@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>img/town_icon.png</file>
+        <file>img/stripped_background.png</file>
+        <file>img/map_background.png</file>
+        <file>img/map_background.jpeg</file>
+    </qresource>
+</RCC>

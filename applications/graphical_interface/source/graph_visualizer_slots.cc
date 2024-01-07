@@ -6,15 +6,9 @@ GraphVisualizer::GraphVisualizer(QWidget *parent)
   ui->setupUi(this);
   setAutoFillBackground(true);
   setPalette(QPalette(QColor(0, 0, 0)));
-  style_settings_.background_path =
-      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/applications/"
-      "graphical_interface/static/img/map_background.png";
-  QImage town_icon =
-      QImage(
-          "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/applications/"
-          "graphical_interface/static/img/town_icon.png")
-          .scaled(50, 50, Qt::KeepAspectRatio);
-  style_settings_.town_icon = town_icon;
+
+  style_settings_.background_path = ":resources/img/map_background.png";
+  style_settings_.town_icon = QImage(":resources/img/town_icon.png").scaled(50, 50, Qt::KeepAspectRatio);
 
   pixmap_ = QPixmap(style_settings_.background_path);
 }
@@ -65,7 +59,7 @@ void GraphVisualizer::DrawPath(const std::vector<float> &path) {
   });
 }
 
-void GraphVisualizer::TSM(const s21::GraphAlgorithms::TsmResult& tsm_result) {
+void GraphVisualizer::TSM(const s21::GraphAlgorithms::TsmResult &tsm_result) {
   pixmap_ = QPixmap(style_settings_.background_path);
   QPainter painter(&pixmap_);
   QPen pen(Qt::green, 2, Qt::DashLine);

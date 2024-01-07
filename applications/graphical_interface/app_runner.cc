@@ -8,8 +8,7 @@ int main(int argc, char *argv[]) {
   QApplication application(argc, argv);
 
   QFile styleFile(
-      "/Users/glenpoin/W/Projects/Algorithms/SimpleNavigator/applications/"
-      "graphical_interface/static/style.qss");
+      "../../../applications/graphical_interface/static/style.qss");
   styleFile.open(QFile::ReadOnly);
   QString style = QLatin1String(styleFile.readAll());
   qApp->setStyleSheet(style);
