@@ -26,18 +26,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Open graph</string>
@@ -86,18 +75,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>DFS</string>
@@ -149,7 +127,7 @@ QPushButton:hover {
     <string/>
    </property>
    <property name="placeholderText">
-    <string>   Start vertex</string>
+    <string>Start vertex</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="bfs_input">
@@ -165,7 +143,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="placeholderText">
-    <string>   Start vertex</string>
+    <string>Start vertex</string>
    </property>
   </widget>
   <widget class="QPushButton" name="get_shortest_path_between_vertices_btn">
@@ -181,18 +159,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Get Shortest Path Between Vertices</string>

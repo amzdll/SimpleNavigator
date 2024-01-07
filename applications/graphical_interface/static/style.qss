@@ -1,6 +1,32 @@
+QMainWindow {
+    background-color: black;
+}
+
+QWidget {
+    background-color: black;
+}
+
+QPushButton {
+    font-family: "JetBrains Mono";
+    font-size: 16px;
+    background-color: black;
+    color: rgb(38, 173, 19);
+    border: none;
+}
+
+QPushButton:hover {
+    font-size: 16px;
+    background-color: rgb(38, 173, 19);
+    color: black;
+    border: none;
+}
+
 QLineEdit {
-    color: green;
-    border: 1px solid green;
+    font-size: 12px;
+    font-family: "JetBrains Mono";
+    padding: 0 0 0 5px;
+    color: rgb(38, 173, 19);
+    border: 1px solid rgb(38, 173, 19);
 }
 
 QTableWidget::item {
