@@ -29,6 +29,6 @@ QLineEdit {
     border: 1px solid green;
 }
 
-QTableWidget::item {
+QTableWidget {
     color: green;
 }
