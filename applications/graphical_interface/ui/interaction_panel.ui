@@ -45,18 +45,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Redraw</string>
@@ -94,18 +83,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>BFS</string>
@@ -141,6 +119,9 @@ QPushButton:hover {
      <width>101</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 0 0 0 10px</string>
    </property>
    <property name="placeholderText">
     <string>Start vertex</string>
@@ -178,18 +159,8 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true">
+</string>
    </property>
    <property name="text">
     <string>Traveling</string>
@@ -208,18 +179,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Get Least Spanning Tree</string>
@@ -238,7 +198,7 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    <string notr="true"/>
    </property>
    <property name="tabKeyNavigation">
     <bool>false</bool>
@@ -323,23 +283,26 @@ QPushButton:hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: transparent;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: rgb(38, 173, 19);
-}
-
-QPushButton:hover {
-    background-color: green;
-    font: 16px &quot;JetBrains Mono&quot;;
-    color: black;
-    border: 1px solid transparent;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Get Shortest Path Between All Vertices</string>
    </property>
   </widget>
+  <zorder>open_graph_btn</zorder>
+  <zorder>redraw_btn</zorder>
+  <zorder>dfs_btn</zorder>
+  <zorder>dfs_input</zorder>
+  <zorder>get_shortest_path_between_vertices_btn</zorder>
+  <zorder>tsm_btn</zorder>
+  <zorder>least_spanning_tree_btn</zorder>
+  <zorder>path_table</zorder>
+  <zorder>first_vertex_shortest_path_input</zorder>
+  <zorder>end_vertex_shortest_path_input</zorder>
+  <zorder>shortest_path_result</zorder>
+  <zorder>get_shortest_path_between_all_vertices_btn</zorder>
+  <zorder>bfs_input</zorder>
+  <zorder>bfs_btn</zorder>
  </widget>
  <resources/>
  <connections/>

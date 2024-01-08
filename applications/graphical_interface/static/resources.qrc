@@ -4,9 +4,11 @@
         <file>img/stripped_background.png</file>
         <file>img/map_background.png</file>
         <file>img/map_background.jpeg</file>
-            </qresource>
+        <file>img/logo.jpeg</file>
+    </qresource>
     <qresource prefix="/fonts">
         <file>font/JetBrainsMono.ttf</file>
+        <file>font/LiberationMono-Regular.ttf</file>
     </qresource>
     <qresource prefix="/styles">
         <file>style.qss</file>

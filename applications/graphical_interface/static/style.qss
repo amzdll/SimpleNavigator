@@ -7,26 +7,26 @@ QWidget {
 }
 
 QPushButton {
-    font-family: "JetBrains Mono";
-    font-size: 16px;
+    font-family: "Liberation Mono";
+    font-size: 18px;
     background-color: black;
-    color: rgb(38, 173, 19);
+    color: green;
     border: none;
 }
 
 QPushButton:hover {
-    font-size: 16px;
-    background-color: rgb(38, 173, 19);
+    font-size: 18px;
+    background-color: green;
     color: black;
     border: none;
 }
 
 QLineEdit {
     font-size: 12px;
-    font-family: "JetBrains Mono";
+    font-family: "Liberation Mono";
     padding: 0 0 0 5px;
-    color: rgb(38, 173, 19);
-    border: 1px solid rgb(38, 173, 19);
+    color: green;
+    border: 1px solid green;
 }
 
 QTableWidget::item {
