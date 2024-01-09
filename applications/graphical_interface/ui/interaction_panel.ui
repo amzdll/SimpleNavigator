@@ -57,7 +57,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>15</x>
      <y>80</y>
      <width>350</width>
      <height>50</height>
@@ -76,7 +76,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>15</x>
      <y>150</y>
      <width>350</width>
      <height>50</height>
@@ -95,10 +95,10 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>16</x>
+     <x>378</x>
      <y>83</y>
      <width>101</width>
-     <height>41</height>
+     <height>44</height>
     </rect>
    </property>
    <property name="inputMask">
@@ -114,10 +114,10 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>16</x>
-     <y>154</y>
+     <x>380</x>
+     <y>155</y>
      <width>101</width>
-     <height>41</height>
+     <height>44</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -159,8 +159,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Traveling</string>

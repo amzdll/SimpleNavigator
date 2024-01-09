@@ -7,7 +7,7 @@ QWidget {
 }
 
 QPushButton {
-    font-family: "Liberation Mono";
+    font-family: "JetBrains Mono";
     font-size: 18px;
     background-color: black;
     color: green;
@@ -23,7 +23,7 @@ QPushButton:hover {
 
 QLineEdit {
     font-size: 12px;
-    font-family: "Liberation Mono";
+    font-family: "JetBrains Mono";
     padding: 0 0 0 5px;
     color: green;
     border: 1px solid green;

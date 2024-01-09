@@ -8,11 +8,9 @@
 GraphicalInterface::GraphicalInterface(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::GraphicalInterface) {
 
-
-
   QPixmap pixmap(
       "../../../applications/graphical_interface/static/img/stripped_background.png");
-   QLabel* label = new QLabel(this);
+  QLabel* label = new QLabel(this);
   label->setPixmap(pixmap);
   label->setAlignment(Qt::AlignCenter);
   setCentralWidget(label);

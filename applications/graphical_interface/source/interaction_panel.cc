@@ -14,9 +14,9 @@ InteractionPanel::InteractionPanel(GraphVisualizer *graph_visualizer,
   auto *double_validator = new QDoubleValidator();
   ui->dfs_input->setValidator(double_validator);
   ui->bfs_input->setValidator(double_validator);
-  ui->path_table->setColumnWidth(0, 150);
-  ui->path_table->setColumnWidth(1, 150);
-  ui->path_table->setColumnWidth(2, 150);
+  ui->path_table->setColumnWidth(0, 143);
+  ui->path_table->setColumnWidth(1, 143);
+  ui->path_table->setColumnWidth(2, 143);
 
   // temp
   ui->path_table->insertRow(3);

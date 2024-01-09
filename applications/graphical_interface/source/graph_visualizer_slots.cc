@@ -10,8 +10,8 @@ GraphVisualizer::GraphVisualizer(QWidget *parent)
 void GraphVisualizer::ConfigureStyleSettings() {
   setAutoFillBackground(true);
   setPalette(QPalette(QColor(0, 0, 0)));
-  style_settings_.background_path = ":resources/img/map_background.png";
-  style_settings_.town_icon = QImage(":resources/img/town_icon.png").scaled(50, 50, Qt::KeepAspectRatio);
+  style_settings_.background_path = ":resource/img/map_background.png";
+  style_settings_.town_icon = QImage(":resource/img/town_icon.png").scaled(50, 50, Qt::KeepAspectRatio);
   pixmap_ = QPixmap(style_settings_.background_path);
 }
 
