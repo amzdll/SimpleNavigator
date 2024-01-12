@@ -19,7 +19,8 @@ InteractionPanel::InteractionPanel(GraphVisualizer *graph_visualizer,
   ui->path_table->setColumnWidth(2, 143);
 
   // temp
-  ui->path_table->insertRow(3);
+  ui->path_table->verticalHeader()->hide();
+  ui->path_table->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 InteractionPanel::~InteractionPanel() { delete ui; }
@@ -71,6 +72,9 @@ void InteractionPanel::GetShortestPath() {
   ui->shortest_path_result->setText(QString::number(path.first));
   graph_visualizer_->DrawPath(path.second);
 }
+
+
+
 
 void InteractionPanel::GetShortestPathItemTable() {
   if (ui->path_table->item(ui->path_table->currentRow(), 2)->text() != "-") {

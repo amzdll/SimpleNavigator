@@ -6,24 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1400</width>
-    <height>900</height>
+    <width>1446</width>
+    <height>950</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string/>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QMainWindow::title { background-color: black; color: white; }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>0</y>
+      <x>540</x>
+      <y>20</y>
       <width>891</width>
-      <height>901</height>
+      <height>911</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="graph_visualizer"/>
@@ -31,19 +31,19 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>10</x>
+      <y>20</y>
       <width>511</width>
-      <height>901</height>
+      <height>911</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="interaction_panel"/>
    </widget>
-   <widget class="Line" name="line">
+   <widget class="Line" name="fas">
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>3</y>
+      <y>10</y>
       <width>1</width>
       <height>45</height>
      </rect>
@@ -59,8 +59,8 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>1395</x>
-      <y>5</y>
+      <x>1438</x>
+      <y>10</y>
       <width>1</width>
       <height>45</height>
      </rect>
@@ -76,8 +76,8 @@
    <widget class="Line" name="line_4">
     <property name="geometry">
      <rect>
-      <x>1395</x>
-      <y>845</y>
+      <x>1438</x>
+      <y>895</y>
       <width>1</width>
       <height>45</height>
      </rect>
@@ -90,11 +90,11 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="Line" name="line_2">
+   <widget class="Line" name="left_bottom_corner">
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>852</y>
+      <y>895</y>
       <width>1</width>
       <height>45</height>
      </rect>
@@ -110,8 +110,8 @@
    <widget class="Line" name="line_5">
     <property name="geometry">
      <rect>
-      <x>505</x>
-      <y>3</y>
+      <x>524</x>
+      <y>10</y>
       <width>1</width>
       <height>45</height>
      </rect>
@@ -127,8 +127,8 @@
    <widget class="Line" name="line_6">
     <property name="geometry">
      <rect>
-      <x>505</x>
-      <y>853</y>
+      <x>524</x>
+      <y>895</y>
       <width>1</width>
       <height>45</height>
      </rect>
@@ -141,12 +141,80 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="Line" name="line_7">
+   <widget class="Line" name="bottom_left_line">
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>3</y>
-      <width>500</width>
+      <y>940</y>
+      <width>520</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: green;
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="upper_left_line">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>10</y>
+      <width>520</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: green;
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_7">
+    <property name="geometry">
+     <rect>
+      <x>534</x>
+      <y>895</y>
+      <width>1</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: green;
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="bottom_left_line_2">
+    <property name="geometry">
+     <rect>
+      <x>534</x>
+      <y>940</y>
+      <width>905</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: green;
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="upper_left_line_2">
+    <property name="geometry">
+     <rect>
+      <x>534</x>
+      <y>10</y>
+      <width>905</width>
       <height>1</height>
      </rect>
     </property>
@@ -161,10 +229,10 @@
    <widget class="Line" name="line_8">
     <property name="geometry">
      <rect>
-      <x>5</x>
-      <y>897</y>
-      <width>500</width>
-      <height>1</height>
+      <x>534</x>
+      <y>10</y>
+      <width>1</width>
+      <height>45</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -172,7 +240,7 @@
 </string>
     </property>
     <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+     <enum>Qt::Vertical</enum>
     </property>
    </widget>
   </widget>

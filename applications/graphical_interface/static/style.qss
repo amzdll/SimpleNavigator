@@ -30,5 +30,26 @@ QLineEdit {
 }
 
 QTableWidget {
+    background-color: black;
     color: green;
+    gridline-color: black;
+}
+
+QHeaderView::section {
+	background-color: black;
+	color: green;
+	border-style: none;
+	font-family: "JetBrains Mono";
+}
+
+QScrollBar:vertical {
+    border:none;
+    color:green;
+    background: black;
+    width: 15px;
+}
+
+QTableView::item::selected {
+    background-color: green;
+	color: black;
 }
