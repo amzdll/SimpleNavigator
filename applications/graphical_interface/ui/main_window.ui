@@ -45,7 +45,7 @@
       <x>5</x>
       <y>10</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -62,7 +62,7 @@
       <x>1438</x>
       <y>10</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -77,9 +77,9 @@
     <property name="geometry">
      <rect>
       <x>1438</x>
-      <y>895</y>
+      <y>915</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -94,9 +94,9 @@
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>895</y>
+      <y>915</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -113,7 +113,7 @@
       <x>524</x>
       <y>10</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -128,9 +128,9 @@
     <property name="geometry">
      <rect>
       <x>524</x>
-      <y>895</y>
+      <y>915</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -179,9 +179,9 @@
     <property name="geometry">
      <rect>
       <x>534</x>
-      <y>895</y>
+      <y>915</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -232,7 +232,7 @@
       <x>534</x>
       <y>10</y>
       <width>1</width>
-      <height>45</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">

@@ -47,10 +47,10 @@ class GraphVisualizer : public QWidget {
     QImage town_icon;
     QString background_path;
   };
-
+  s21::Graph graph_{};
   QPixmap pixmap_{};
   s21::matrix<float> adjacency_matrix_{};
-  QVector<QPair<float, QVector2D>> vertices_;
+  QMap<float, QVector2D> vertices_;
   QMap<QPair<int, int>, float> edge_weights_;
   QTimer timer_;
   style_settings style_settings_{};

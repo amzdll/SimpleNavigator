@@ -20,9 +20,10 @@ void GraphVisualizer::DrawGraph() {
 }
 
 void GraphVisualizer::DrawVertices() {
+  // fix: just recolor img in folder
   RecolorVertexImage(Qt::green);
-  for (auto vertex : vertices_) {
-    DrawVertex(vertex.first, Qt::black, Qt::white);
+  for (auto vertex : vertices_.keys()) {
+    DrawVertex(vertex, Qt::black, Qt::white);
   }
 }
 
@@ -41,8 +42,8 @@ void GraphVisualizer::DrawEdgesValue() {
       const QPair<int, int> &vertices = itr.key();
       int vertex1 = vertices.first;
       int vertex2 = vertices.second;
-      QPointF center = (vertices_[vertex1].second.toPointF() +
-                        vertices_[vertex2].second.toPointF()) /
+      QPointF center = (vertices_[vertex1].toPointF() +
+                        vertices_[vertex2].toPointF()) /
                        2;
       QPointF textPosition =
           center -
@@ -64,8 +65,8 @@ void GraphVisualizer::DrawEdges() {
   for (int i = 1; i < adjacency_matrix_.GetRows(); ++i) {
     for (int j = i + 1; j < adjacency_matrix_.GetRows(); ++j) {
       if (adjacency_matrix_[i][j] != 0) {
-        painter.drawLine(vertices_[i].second.toPointF(),
-                         vertices_[j].second.toPointF());
+        painter.drawLine(vertices_[i].toPointF(),
+                         vertices_[j].toPointF());
       }
     }
   }
@@ -83,11 +84,11 @@ void GraphVisualizer::DrawVertex(float vertex, Qt::GlobalColor text_color,
   painter.setBrush(QBrush(vertex_color));
 
   QRectF position;
-  position.setX(vertices_[vertex].second.toPointF().x() - 20);
-  position.setY(vertices_[vertex].second.toPointF().y() - 30);
+  position.setX(vertices_[vertex].toPointF().x() - 20);
+  position.setY(vertices_[vertex].toPointF().y() - 30);
   painter.drawImage(position, style_settings_.town_icon);
-  QRectF textRect = QRectF(vertices_[vertex].second.x() - 5,
-                           vertices_[vertex].second.y() + 30, 20, 20);
+  QRectF textRect = QRectF(vertices_[vertex].x() - 5,
+                           vertices_[vertex].y() + 30, 20, 20);
   painter.drawText(textRect, Qt::AlignCenter, QString::number(vertex));
   painter.end();
 
